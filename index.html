@@ -662,9 +662,28 @@
     const encoded = encodeURIComponent(msg);
     const url     = `https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${encoded}&apikey=${apiKey}`;
 
+    // Google Sheets via Apps Script
+    const sheetsUrl = 'https://script.google.com/macros/s/AKfycbwCFXDBUuCFWSwy4wcXzEk88CrcsLALKifDGwztuSKXiD1ntgZHkn-HM4fwtDzcZF_4/exec';
+    const sheetsData = {
+      name, weight, height, bmi, goal: selGoal,
+      experience: `${selExp} (${selExpYears})`,
+      trainingDays: `${trainingDays} (${selDays.size}x/week)`,
+      plan: selPlan, price: selPrice,
+      busy: busyLines.join(' | '),
+      free: freeLines.join(' | '),
+      notes
+    };
+
     try {
-      await fetch(url, { mode: 'no-cors' });
-      // Show success (no-cors so we can't check response, assume ok)
+      await Promise.all([
+        fetch(url, { mode: 'no-cors' }),
+        fetch(sheetsUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sheetsData)
+        })
+      ]);
       showSuccess({ name, weight, height, bmi, trainingDays, selGoal, selExp, selExpYears, selPlan, selPrice, busyLines, freeLines, notes });
     } catch(e) {
       showSuccess({ name, weight, height, bmi, trainingDays, selGoal, selExp, selExpYears, selPlan, selPrice, busyLines, freeLines, notes });
