@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coaching — أشرف الأحمدي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold2: #e2c06a;
+  --gold3: #8a6d2a;
+  --ink: #080808;
+  --ink2: #111;
+  --ink3: #1c1c1c;
+  --ink4: #242424;
+  --line: rgba(255,255,255,0.07);
+  --line2: rgba(255,255,255,0.12);
+  --text: #f5f5f0;
+  --text2: #a0998a;
+  --text3: #5a5550;
+  --red: #c0392b;
+  --green: #27ae60;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; height: auto; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  height: auto;
+}
+
+/* ── TEXTURE HERO ── */
+.hero {
+  position: relative;
+  padding: 60px 24px 40px;
+  text-align: center;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* SVG noise texture overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Radial gold glow */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.12) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Geometric lines pattern */
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-lines svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.06;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 520px; margin: 0 auto; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 28px;
+  opacity: 0.9;
+}
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 8vw, 54px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+  position: relative;
+}
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to left, var(--gold), transparent);
+}
+
+.hero-sub {
+  font-size: 20px;
+  color: var(--text2);
+  line-height: 1.9;
+  font-weight: 300;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* Gold separator */
+.sep {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px auto 0;
+  max-width: 200px;
+}
+.sep-line { flex: 1; height: 1px; background: var(--line2); }
+.sep-diamond {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.8;
+}
+
+/* ── FORM BODY ── */
+.body {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ── SECTION ── */
+.section { margin-bottom: 52px; }
+.section-label {
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+/* ── FIELD ── */
+.field { margin-bottom: 20px; }
+.field:last-child { margin-bottom: 0; }
+.field-label {
+  font-size: 18px;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+.field input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line2);
+  padding: 12px 0;
+  font-size: 24px;
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.3s;
+  direction: rtl;
+  border-radius: 0;
+}
+.field input:focus { border-bottom-color: var(--gold); }
+.field input::placeholder { color: var(--text3); font-size: 22px; }
+input[type="number"]::-webkit-inner-spin-button { opacity: 0.15; }
+
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* Phone */
+.phone-row { display: flex; flex-direction: row-reverse; gap: 0; align-items: flex-end; border-bottom: 1px solid var(--line2); transition: border-color 0.3s; }
+.phone-row:focus-within { border-bottom-color: var(--gold); }
+.phone-row select {
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 4px 12px 0;
+  direction: ltr;
+  min-width: 95px;
+  flex-shrink: 0;
+}
+.phone-row select option { background: var(--ink2); color: var(--text); }
+.phone-row input {
+  flex: 1;
+  border: none;
+  border-bottom: none;
+  padding: 12px 0;
+  direction: ltr;
+  text-align: left;
+}
+.phone-divider { width: 1px; height: 20px; background: var(--line2); margin-bottom: 12px; }
+
+/* ── GOAL CARDS ── */
+.goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.goal-card {
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  padding: 28px 20px 24px;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: center;
+  position: relative;
+  background: transparent;
+  font-family: 'Cairo', sans-serif;
+}
+.goal-card:hover { border-color: var(--gold3); background: rgba(201,168,76,0.03); }
+.goal-card.on {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.05);
+}
+.goal-card.on::before {
+  content: '✓';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px; height: 20px;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 900;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 20px;
+  text-align: center;
+}
+.goal-emoji { font-size: 46px; margin-bottom: 12px; display: block; }
+.goal-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+  transition: color 0.2s;
+}
+.goal-card.on .goal-name { color: var(--gold); }
+.goal-desc { font-size: 18px; color: var(--text3); line-height: 1.6; }
+
+/* ── PLAN ── */
+.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.plan-card {
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  padding: 24px 18px 20px;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  background: transparent;
+  font-family: 'Cairo', sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+.plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s;
+}
+.plan-card:hover { border-color: var(--gold3); }
+.plan-card:hover::before { transform: scaleX(0.5); }
+.plan-card.on { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+.plan-card.on::before { transform: scaleX(1); }
+.plan-badge {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 10px;
+  border: 1px solid;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+.badge-start { color: var(--text3); border-color: var(--text3); }
+.badge-elite { color: var(--gold); border-color: var(--gold3); }
+.plan-months {
+  font-family: 'Cairo', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -1px;
+}
+.plan-card.on .plan-months { color: var(--text); }
+.plan-amount {
+  font-size: 27px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.plan-sep-line { height: 1px; background: var(--line); margin-bottom: 12px; }
+.plan-card.on .plan-sep-line { background: rgba(201,168,76,0.2); }
+.commit-track {
+  background: var(--ink4);
+  border-radius: 10px;
+  height: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.commit-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: var(--text3);
+  transition: background 0.3s;
+}
+.plan-card.on .commit-fill { background: var(--gold); }
+.plan-tagline { font-size: 18px; color: var(--text3); font-style: italic; line-height: 1.5; }
+.plan-card.on .plan-tagline { color: var(--gold2); opacity: 0.8; }
+.save-tag {
+  position: absolute;
+  top: 8px; right: 8px;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* Commit reveal */
+.commit-msg {
+  margin-top: 16px;
+  padding: 18px 20px;
+  border-right: 2px solid var(--gold);
+  background: rgba(201,168,76,0.04);
+  display: none;
+  animation: slideDown 0.3s ease;
+}
+.commit-msg.show { display: block; }
+@keyframes slideDown { from { opacity:0; transform: translateY(-8px); } to { opacity:1; transform: translateY(0); } }
+.commit-text {
+  font-size: 20px;
+  color: var(--text2);
+  line-height: 1.9;
+  font-style: italic;
+}
+.commit-author { font-size: 15px; color: var(--gold3); margin-top: 8px; letter-spacing: 1px; }
+
+/* ── TERMS ── */
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  flex-direction: row-reverse;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.terms-row input[type="checkbox"] {
+  width: 15px; height: 15px;
+  accent-color: var(--gold);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.terms-text {
+  font-size: 19px;
+  color: var(--text3);
+  line-height: 1.7;
+  text-align: right;
+}
+.terms-text a {
+  color: var(--text2);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+.terms-text a:hover { color: var(--gold); }
+
+/* ── SUBMIT ── */
+.submit-wrap { margin-top: 32px; }
+.submit-btn {
+  width: 100%;
+  background: var(--gold);
+  border: none;
+  padding: 18px 24px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  text-transform: uppercase;
+  border-radius: 12px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.submit-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.2s;
+}
+.submit-btn:hover { background: var(--gold2); transform: translateY(-1px); }
+.submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { background: var(--ink4); color: var(--text3); cursor: not-allowed; transform: none; }
+
+/* ── SUCCESS ── */
+#successPage { display: none; max-width: 520px; margin: 0 auto; padding: 0; }
+#successPage.visible { display: block; padding: 40px 20px 40px; }
+.success-mark {
+  width: 56px; height: 56px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 27px;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.success-title {
+  font-size: 43px;
+  font-weight: 900;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+.success-sub {
+  font-size: 19px;
+  color: var(--text2);
+  text-align: center;
+  line-height: 1.8;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+/* Pay Hero */
+.pay-hero { margin-bottom: 16px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line2); }
+.pay-hero-head {
+  text-align: center;
+  padding: 36px 24px 28px;
+  border: none;
+  border-bottom: 1px solid var(--line2);
+  position: relative;
+  background: rgba(201,168,76,0.03);
+}
+.pay-hero-head::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to left, transparent, var(--gold), transparent);
+}
+.pay-lbl {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--gold3);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.pay-plan-name { font-size: 20px; color: var(--text2); margin-bottom: 8px; }
+.pay-amount {
+  font-family: 'Cairo', sans-serif;
+  font-size: 58px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 4px;
+}
+.pay-amount span { font-size: 24px; font-weight: 500; color: var(--gold3); letter-spacing: 0; margin-right: 4px; }
+.pay-hint { font-size: 18px; color: var(--text3); margin-top: 8px; }
+
+.pay-methods { display: grid; grid-template-columns: 1fr 1fr; border-top: none; border-bottom: 1px solid var(--line2); }
+.pay-method-btn {
+  padding: 16px 12px;
+  text-align: center;
+  cursor: pointer;
+  border-left: 1px solid var(--line2);
+  transition: all 0.15s;
+  font-family: 'Cairo', sans-serif;
+}
+.pay-method-btn:last-child { border-left: none; }
+.pay-method-btn:hover { background: rgba(255,255,255,0.03); }
+.pay-method-btn.active { background: rgba(201,168,76,0.05); border-bottom: 2px solid var(--gold); }
+.pmb-icon { font-size: 24px; margin-bottom: 4px; }
+.pmb-name { font-size: 19px; color: var(--text); font-weight: 600; }
+.pmb-sub { font-size: 16px; color: var(--text3); margin-top: 2px; }
+
+.pay-details {
+  display: none;
+  border: 1px solid var(--line2);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 20px;
+  animation: slideDown 0.2s ease;
+}
+.pay-details.show { display: block; }
+
+.pay-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  flex-direction: row-reverse;
+  gap: 12px;
+}
+.pay-row:last-of-type { border-bottom: none; }
+.pay-key { font-size: 18px; color: var(--text3); letter-spacing: 0.5px; white-space: nowrap; }
+.pay-val {
+  font-size: 20px;
+  color: var(--text);
+  font-weight: 500;
+  text-align: left;
+  word-break: break-all;
+  font-family: 'Cairo', sans-serif;
+  direction: ltr;
+}
+.copy-btn {
+  background: transparent;
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  padding: 3px 8px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text3);
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  text-transform: uppercase;
+  transition: all 0.15s;
+  margin-right: 8px;
+}
+.copy-btn:hover { border-color: var(--gold3); color: var(--gold); }
+
+.rib-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 10px 0 6px;
+}
+.rib-cell {
+  background: var(--ink3);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+.rib-cell-label { font-size: 14px; color: var(--text3); letter-spacing: 0.5px; margin-bottom: 4px; }
+.rib-cell-val { font-size: 22px; color: var(--gold); font-weight: 700; font-family: 'Cairo', sans-serif; }
+.rib-compte {
+  background: var(--ink3);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rib-compte-label { font-size: 15px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+.rib-compte-val { font-size: 20px; color: var(--gold); font-weight: 700; letter-spacing: 1px; font-family: 'Cairo', sans-serif; direction: ltr; }
+
+.wa-btn {
+  width: 100%;
+  margin-top: 14px;
+  background: transparent;
+  border: 1px solid rgba(39,174,96,0.4);
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #27ae60;
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  border-radius: 1px;
+}
+.wa-btn:hover { background: rgba(39,174,96,0.08); border-color: #27ae60; }
+
+/* Summary */
+.summary {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+}
+.summary-title {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--text3);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.sum-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  gap: 12px;
+  flex-direction: row-reverse;
+}
+.sum-row:last-child { border-bottom: none; }
+.sum-k { font-size: 18px; color: var(--text3); white-space: nowrap; }
+.sum-v { font-size: 19px; color: var(--text); font-weight: 500; text-align: left; font-family: 'Cairo', sans-serif; }
+
+/* Terms Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 100;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--ink2);
+  border-top: 1px solid var(--line2);
+  border-radius: 20px 20px 0 0;
+  width: 100%; max-width: 640px;
+  max-height: 88vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.modal-top {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.modal-top-title {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.modal-close {
+  background: transparent;
+  border: 1px solid var(--line2);
+  width: 28px; height: 28px;
+  color: var(--text3);
+  font-size: 19px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  font-family: 'Cairo', sans-serif;
+}
+.modal-close:hover { border-color: var(--gold3); color: var(--text); }
+.modal-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.modal-tab {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+}
+.modal-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.modal-body {
+  overflow-y: auto;
+  padding: 24px 20px;
+  flex: 1;
+  text-align: right;
+}
+.modal-body h3 { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.modal-body h4 {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold3);
+  margin: 18px 0 8px;
+  font-weight: 700;
+}
+.modal-body p, .modal-body li { font-size: 18px; color: var(--text2); line-height: 1.9; margin-bottom: 8px; font-weight: 300; }
+.modal-body ul { padding-right: 16px; }
+.modal-body strong { color: var(--text); font-weight: 600; }
+.modal-foot { padding: 14px 20px; border-top: 1px solid var(--line); flex-shrink: 0; }
+.modal-accept {
+  width: 100%;
+  background: var(--gold);
+  border: none;
+  padding: 13px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  text-transform: uppercase;
+}
+
+/* ── FLOATING WHATSAPP ── */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+.wa-float-btn {
+  width: 56px; height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+.wa-float:hover .wa-float-btn {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+}
+.wa-float-btn svg { width: 28px; height: 28px; }
+.wa-float-label {
+  background: #1a1a1a;
+  border: 1px solid rgba(37,211,102,0.3);
+  color: #25D366;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+  padding: 8px 14px 8px 18px;
+  border-radius: 24px 0 0 24px;
+  margin-right: -8px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+.wa-float:hover .wa-float-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (max-width: 600px) {
+  .wa-float { bottom: 20px; left: 16px; }
+  .wa-float-label { display: none; }
+}
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink3);
+  border: 1px solid var(--line2);
+  padding: 10px 20px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  display: none;
+  z-index: 999;
+  white-space: nowrap;
+  border-radius: 1px;
+}
+.toast.show { display: block; animation: slideDown 0.3s ease; }
+.toast.ok { border-color: rgba(39,174,96,0.5); color: #27ae60; }
+.toast.err { border-color: rgba(192,57,43,0.5); color: #e74c3c; }
+
+@media (max-width: 600px) {
+
+  /* Hero */
+  .hero { padding: 52px 20px 44px; }
+  .hero h1 { font-size: clamp(34px, 9vw, 46px); }
+  .hero-sub { font-size: 15px; }
+  .sep { margin-top: 32px; }
+
+  /* Body */
+  .body { padding: 36px 16px 80px; }
+  .section { margin-bottom: 40px; }
+
+  /* All single column on mobile */
+  .row2 { grid-template-columns: 1fr; gap: 0; }
+
+  /* Inputs — bigger tap target */
+  .field input {
+    font-size: 17px;
+    padding: 16px 0;
+  }
+  .field-label { font-size: 12px; margin-bottom: 6px; }
+
+  /* Phone */
+  .phone-row select { font-size: 13px; min-width: 85px; padding: 16px 8px 16px 0; }
+
+  /* Goal — 2 columns on mobile */
+  .goal-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .goal-card { padding: 20px 12px; display: block; text-align: center; }
+  .goal-emoji { font-size: 30px; margin-bottom: 8px; }
+  .goal-name { font-size: 16px; margin-bottom: 3px; }
+  .goal-desc { font-size: 11px; }
+
+  /* Plan — 2 columns on mobile */
+  .plan-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .plan-card { padding: 18px 12px 14px; display: block; text-align: center; flex-wrap: unset; }
+  .plan-card > * { flex-shrink: unset; }
+  .plan-card .plan-badge { margin-bottom: 8px; }
+  .plan-months { font-size: 30px; line-height: 1; }
+  .plan-amount { font-size: 16px; margin-bottom: 8px; }
+  .plan-sep-line { width: 100%; }
+  .commit-track { width: 100%; }
+  .plan-tagline { width: 100%; font-size: 11px; }
+  .save-tag { top: 6px; right: 6px; }
+
+  /* Commit message */
+  .commit-msg { padding: 14px 16px; }
+
+  /* Terms */
+  .terms-row { padding: 14px 0; gap: 14px; }
+  .terms-text { font-size: 13px; }
+
+  /* Submit */
+  .submit-btn { padding: 20px; font-size: 15px; }
+
+  /* Success */
+  #successPage.visible { padding: 32px 16px 40px; }
+  .success-title { font-size: 28px; }
+  .success-sub { font-size: 14px; margin-bottom: 32px; }
+
+  /* Payment hero */
+  .pay-hero-head { padding: 26px 16px 20px; }
+  .pay-amount { font-size: 50px; }
+  .pay-plan-name { font-size: 14px; }
+  .pay-hint { font-size: 12px; }
+
+  /* Pay method buttons — bigger tap */
+  .pay-method-btn { padding: 16px 10px; }
+  .pmb-name { font-size: 14px; }
+  .pmb-sub { font-size: 11px; }
+
+  /* Pay details */
+  .pay-details { padding: 16px; }
+  .pay-row { padding: 12px 0; }
+  .pay-key { font-size: 12px; }
+  .pay-val { font-size: 14px; }
+
+  /* RIB */
+  .rib-grid { gap: 5px; }
+  .rib-cell { padding: 8px 6px; }
+  .rib-cell-val { font-size: 15px; }
+  .rib-compte-val { font-size: 14px; }
+
+  /* WA button */
+  .wa-btn { padding: 14px; font-size: 14px; }
+
+  /* Summary */
+  .summary { padding: 16px; }
+  .sum-k { font-size: 12px; }
+  .sum-v { font-size: 13px; }
+  .sum-row { padding: 10px 0; }
+
+  /* Modal */
+  .modal-body { padding: 20px 16px; }
+  .modal-body p, .modal-body li { font-size: 14px; }
+  .modal-accept { padding: 15px; font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-lines">
+    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+      <line x1="0" y1="100" x2="800" y2="100" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="0" y1="300" x2="800" y2="300" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="200" y1="0" x2="200" y2="400" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="600" y1="0" x2="600" y2="400" stroke="#C9A84C" stroke-width="0.5"/>
+      <rect x="340" y="140" width="120" height="120" fill="none" stroke="#C9A84C" stroke-width="0.5" transform="rotate(45 400 200)"/>
+      <circle cx="400" cy="200" r="80" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+      <circle cx="400" cy="200" r="140" fill="none" stroke="#C9A84C" stroke-width="0.3"/>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">أشرف الأحمدي · استشارات</div>
+    <h1>أحسن استثمار<br><em>جسمك وصحتك</em></h1>
+
+    <div style="margin-top:28px;padding:18px 20px;border:1px solid rgba(201,168,76,0.3);background:rgba(201,168,76,0.05);border-radius:12px;max-width:420px;margin-left:auto;margin-right:auto;">
+      <div style="font-size:10px;letter-spacing:2px;color:#C9A84C;text-transform:uppercase;font-weight:700;margin-bottom:8px;">تنبيه مهم</div>
+      <div style="font-size:15px;color:#f5f5f0;line-height:1.8;font-weight:400;">الكوتشينغ الشخصي <span style="color:#C9A84C;font-weight:700;">مكيّناش دابا</span>.<br>كنقبل غير الاستشارات عبر واتساب.</div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <div style="font-size:11px;color:#5a5550;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;">تواصل معنا مباشرة</div>
+      <a href="https://wa.me/212764747363?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A3%D8%B4%D8%B1%D9%81%20%F0%9F%91%8B%20%D8%A8%D8%BA%D9%8A%D8%AA%20%D9%86%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D9%83" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:#25D366;color:#000;font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;padding:16px 32px;text-decoration:none;border-radius:12px;letter-spacing:0.5px;transition:all 0.2s;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="black"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        ابدأ استشارتك الآن
+      </a>
+      <div style="margin-top:12px;font-size:13px;color:#5a5550;direction:ltr;">+212 764 747 363</div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- TERMS MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeTerms()">
+  <div class="modal">
+    <div class="modal-top">
+      <div class="modal-top-title">الشروط والأحكام</div>
+      <button class="modal-close" onclick="closeTerms()">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="tabT" onclick="switchTab('terms')">الشروط والأحكام</button>
+      <button class="modal-tab" id="tabR" onclick="switchTab('refund')">سياسة الاسترداد</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot">
+      <button class="modal-accept" onclick="acceptTerms()">أقبل وأغلق</button>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a class="wa-float" href="https://wa.me/212764747363?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%20%D8%A3%D8%B4%D8%B1%D9%81%20%F0%9F%91%8B%20%D8%A8%D8%BA%D9%8A%D8%AA%20%D9%86%D8%B9%D8%B1%D9%81%20%D8%A3%D9%83%D8%AB%D8%B1%20%D8%B9%D9%84%D9%89%20%D8%A8%D8%B1%D8%A7%D9%85%D8%AC%20%D8%A7%D9%84%D9%83%D9%88%D8%AA%D8%B4%D9%8A%D9%86%D8%AC" target="_blank">
+  <div class="wa-float-label">تواصل معي</div>
+  <div class="wa-float-btn">
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </div>
+</a>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let selGoal='', selPlan='', selPrice='';
+
+const commitMsgs = {
+  '3 Months':{ q:'جسمك هو الشيء الوحيد اللي عندك فيه الكونترول الكامل — وهو اللي كيبدل كيفاش كتحس براسك. بدا التغيير دابا باش تحس براسك أحسن وقوي.', a:'— أشرف الأحمدي' },
+  '6 Months':{ q:'6 أشهر هي اللي كتوقع فيها التحولات الحقيقية. الانضباط اللي كتبيّن دابا كيقولي كل شي.', a:'— أشرف الأحمدي' }
+};
+
+document.querySelectorAll('.goal-card').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.goal-card').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); selGoal=b.dataset.g;
+  });
+});
+
+document.querySelectorAll('.plan-card').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.plan-card').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); selPlan=b.dataset.p; selPrice=b.dataset.pr;
+    const m=commitMsgs[selPlan];
+    document.getElementById('commitText').textContent='"'+m.q+'"';
+    document.getElementById('commitAuthor').textContent=m.a;
+    document.getElementById('commitMsg').classList.add('show');
+  });
+});
+
+function togglePay(m){
+  ['cih','bank'].forEach(x=>{
+    const d=document.getElementById('pay-'+x);
+    if(x===m) d.classList.toggle('show'); else d.classList.remove('show');
+  });
+}
+function activePay(m){
+  document.querySelectorAll('.pay-method-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(m==='cih'?'mBtn1':'mBtn2').classList.add('active');
+}
+
+function copyText(t,btn){
+  navigator.clipboard.writeText(t).then(()=>{
+    btn.textContent='تم ✓'; btn.style.color='#27ae60'; btn.style.borderColor='rgba(39,174,96,0.4)';
+    setTimeout(()=>{btn.textContent='نسخ';btn.style.color='';btn.style.borderColor='';},2000);
+  });
+}
+
+function shareWA(m){
+  let msg='';
+  if(m==='cih'){
+    msg=['💳 *تفاصيل الدفع — أشرف الأحمدي كوتشينغ*','─────────────────────','🏦 *CIH Bank*','👤 ACHRAF AL AHMADI LAAROSSI','🔢 4500637211008900','─────────────────────','✅ أرسل إيصال الدفع بعد التحويل','📞 +212 764 747 363'].join('\n');
+  } else {
+    msg=['💳 *تفاصيل الدفع — أشرف الأحمدي كوتشينغ*','─────────────────────','🏦 *تحويل بنكي — RIB*','👤 ACHRAF AL AHMADI LAAROSSI','🔢 RIB: 230720450063721100890039','• Code Banque: 230 | Code Ville: 720 | Clé: 39','• N° Compte: 4500637211008900','🌍 SWIFT: CIHMMAMC','─────────────────────','✅ أرسل إيصال الدفع بعد التحويل','📞 +212 764 747 363'].join('\n');
+  }
+  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+}
+
+function showToast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show'+(type?' '+type:'');
+  setTimeout(()=>t.className='toast',3500);
+}
+
+async function submitForm(){
+  const name=document.getElementById('clientName').value.trim();
+  const code=document.getElementById('phoneCode').value;
+  const num=document.getElementById('phone').value.trim();
+  const phone=code+' '+num;
+  const w=document.getElementById('weight').value.trim().replace(',','.');
+  const h=document.getElementById('height').value.trim().replace(',','.');
+  const terms=document.getElementById('termsCheck').checked;
+  const miss=[];
+  if(!name)miss.push('الاسم');
+  if(!num)miss.push('الهاتف');
+  if(!w||!h)miss.push('الوزن والطول');
+  if(!selGoal)miss.push('الهدف');
+  if(!selPlan)miss.push('البرنامج');
+  if(!terms){showToast('يرجى الموافقة على الشروط والأحكام','err');return;}
+  if(miss.length){showToast('ناقص: '+miss.join('، '),'err');return;}
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true; btn.textContent='جاري الإرسال...';
+  const bmi=(parseFloat(w)/Math.pow(parseFloat(h)/100,2)).toFixed(1);
+  const waMsg=['🏋️ *عميل جديد — كوتشينغ*','─────────────────────','👤 *الاسم:* '+name,'📱 *الهاتف:* '+phone,'⚖️ *الوزن:* '+w+' kg','📏 *الطول:* '+h+' cm','📊 *BMI:* '+bmi,'🎯 *الهدف:* '+selGoal,'📦 *البرنامج:* '+selPlan+' — '+selPrice,'─────────────────────','✅ نموذج الكوتشينغ'].join('\n');
+  const sheetsData={name,phone,weight:w,height:h,bmi,goal:selGoal,plan:selPlan,price:selPrice};
+  const cbUrl='https://api.callmebot.com/whatsapp.php?phone=212764747363&text='+encodeURIComponent(waMsg)+'&apikey=YOUR_CALLMEBOT_APIKEY';
+  const shUrl='https://script.google.com/macros/s/AKfycbwCFXDBUuCFWSwy4wcXzEk88CrcsLALKifDGwztuSKXiD1ntgZHkn-HM4fwtDzcZF_4/exec';
+  try{await Promise.all([fetch(cbUrl,{mode:'no-cors'}),fetch(shUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(sheetsData)})]);}catch(e){}
+  const planLbl=selPlan==='3 Months'?'3 أشهر — بداية':'6 أشهر — إيليت';
+  document.getElementById('heroPlanName').textContent=planLbl;
+  const amt=selPrice.replace(/[^0-9]/g,'');
+  document.getElementById('heroAmount').innerHTML=parseInt(amt).toLocaleString()+' <span>DH</span>';
+  document.getElementById('formPage').style.display='none';
+  document.getElementById('successPage').classList.add('visible');
+  document.querySelector('.hero').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const TERMS={
+  terms:`<h3>الشروط والأحكام</h3><p>آخر تحديث: يناير 2025. يرجى قراءة هذه الشروط بعناية قبل الاشتراك.</p><h4>1. الخدمات</h4><p>يقدم أشرف الأحمدي كوتشينغ <strong>تدريباً شخصياً عبر الإنترنت</strong> يشمل برامج تمارين مخصصة وإرشادات تغذوية ومتابعة أسبوعية ودعماً عبر واتساب.</p><h4>2. التسجيل والدفع</h4><p>بإرسال النموذج وإتمام الدفع، تؤكد نيتك في الاشتراك. يبدأ برنامجك خلال <strong>48 ساعة</strong> من تأكيد الدفع.</p><h4>3. مسؤوليات العميل</h4><ul><li>تقديم معلومات صحية دقيقة.</li><li>الالتزام بالبرنامج بانتظام.</li><li>النتائج تعتمد على التزامك وأسلوب حياتك.</li></ul><h4>4. إخلاء المسؤولية الصحية</h4><p>خطط التدريب ليست بديلاً عن الاستشارة الطبية.</p><h4>5. الملكية الفكرية</h4><p>جميع البرامج للاستخدام الشخصي فقط. لا يجوز إعادة توزيعها أو بيعها.</p>`,
+  refund:`<h3>سياسة الاسترداد</h3><h4>ضمان الرضا 14 يوماً</h4><p>إذا لم تكن راضياً خلال <strong>أول 14 يوماً</strong>، يمكنك طلب استرداد كامل بشرط:</p><ul><li>اتباع الخطة 7 أيام متتالية على الأقل.</li><li>التواصل مع أشرف عبر واتساب أولاً.</li><li>تقديم الطلب خلال 14 يوماً من بدء البرنامج.</li></ul><h4>حالات عدم الاسترداد</h4><ul><li>الطلبات بعد 14 يوماً.</li><li>عدم الالتزام بالبرنامج.</li><li>عوامل خارجية.</li></ul><h4>كيفية الطلب</h4><p>واتساب: <strong>+212 764 747 363</strong> — يُعالَج الاسترداد خلال <strong>7 أيام عمل</strong>.</p>`
+};
+function openTerms(t){switchTab(t);document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeTerms(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function switchTab(t){document.getElementById('modalBody').innerHTML=TERMS[t];document.getElementById('tabT').classList.toggle('active',t==='terms');document.getElementById('tabR').classList.toggle('active',t==='refund');}
+function acceptTerms(){document.getElementById('termsCheck').checked=true;closeTerms();showToast('تم القبول ✓','ok');}
+switchTab('terms');
+</script>
+</body>
+</html>
