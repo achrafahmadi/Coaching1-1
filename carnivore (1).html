@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل الكارنيفور الكامل — أشرف الأحمدي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C; --gold2: #e2c06a; --gold3: #8a6d2a;
+  --ink: #080808; --ink2: #111; --ink3: #1a1a1a; --ink4: #222;
+  --line: rgba(255,255,255,0.07); --line2: rgba(255,255,255,0.12);
+  --text: #f0ede6; --text2: #a0998a; --text3: #5a5550;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink); color: var(--text);
+  font-family: 'Cairo', sans-serif; font-weight: 300;
+  line-height: 1.85; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  align-items: center; text-align: center; padding: 80px 24px 60px; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 200px 200px; pointer-events: none; z-index: 0;
+}
+.hero::after {
+  content: ''; position: absolute; top: -100px; left: 50%;
+  transform: translateX(-50%); width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+.hero-geo { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.hero-geo svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.05; }
+.hero-inner { position: relative; z-index: 1; max-width: 700px; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; letter-spacing: 3px; color: var(--gold);
+  text-transform: uppercase; font-weight: 700; margin-bottom: 24px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after { content:''; width:28px; height:1px; background:var(--gold); opacity:0.5; }
+.hero h1 {
+  font-family: 'Cairo', sans-serif; font-size: clamp(36px, 7vw, 68px);
+  font-weight: 900; line-height: 1.2; color: var(--text); margin-bottom: 16px;
+}
+.hero h1 em { color: var(--gold); font-style: normal; }
+.hero-sub { font-size: 16px; color: var(--text2); line-height: 1.8; max-width: 520px; margin: 0 auto 40px; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 40px; }
+.hero-tag {
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+  padding: 5px 14px; border: 1px solid rgba(201,168,76,0.3); color: var(--gold3); border-radius: 20px;
+}
+.scroll-hint {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 10px; letter-spacing: 2px; color: var(--text3); text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+.scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold3), transparent); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+.toc-section { max-width: 760px; margin: 0 auto; padding: 60px 24px; border-top: 1px solid var(--line); }
+.section-eyebrow {
+  font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase;
+  font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.section-eyebrow::before { content:''; flex:1; height:1px; background:var(--line); }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+.toc-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px;
+  text-decoration: none; color: var(--text2); font-size: 13px; transition: all 0.2s;
+}
+.toc-item:hover { border-color: var(--gold3); color: var(--text); background: rgba(201,168,76,0.04); }
+.toc-num { font-size: 10px; color: var(--gold3); font-weight: 700; letter-spacing: 1px; min-width: 20px; }
+.content { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+.chapter { padding: 60px 0; border-top: 1px solid var(--line); }
+.chapter:first-child { border-top: none; }
+.chapter-header { margin-bottom: 32px; }
+.chapter-num { font-size: 9px; letter-spacing: 3px; color: var(--gold3); text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+.chapter h2 { font-family: 'Cairo', sans-serif; font-size: clamp(24px, 4vw, 38px); font-weight: 900; color: var(--text); line-height: 1.25; }
+.chapter h2 em { color: var(--gold); font-style: normal; }
+.prose { font-size: 16px; color: var(--text2); line-height: 1.9; }
+.prose p { margin-bottom: 20px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--text); font-weight: 600; }
+.prose em { color: var(--gold2); }
+.pullquote {
+  border-right: none; border-left: 3px solid var(--gold);
+  padding: 16px 20px; margin: 28px 0; background: rgba(201,168,76,0.04); border-radius: 0 8px 8px 0;
+}
+.pullquote p { font-size: 15px; color: var(--text); line-height: 1.8; font-style: italic; margin: 0; }
+.pullquote cite { display: block; font-size: 11px; color: var(--gold3); margin-top: 8px; letter-spacing: 1px; font-style: normal; }
+.benefit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin: 24px 0; }
+.benefit-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; background: var(--ink3); border: 1px solid var(--line); border-radius: 10px; }
+.benefit-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+.benefit-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.benefit-text strong { color: var(--text); }
+.rules-list { list-style: none; margin: 20px 0; }
+.rules-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--text2); line-height: 1.7; }
+.rules-list li:last-child { border-bottom: none; }
+.rules-list li::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.rules-list.no li::before { content: '✕'; color: #c0392b; }
+.callout { padding: 18px 20px; border-radius: 10px; margin: 24px 0; display: flex; gap: 14px; }
+.callout.warn { background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.25); }
+.callout.tip { background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.25); }
+.callout.info { background: rgba(39,174,96,0.06); border: 1px solid rgba(39,174,96,0.2); }
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.callout-body { font-size: 14px; line-height: 1.8; }
+.callout.warn .callout-body { color: #e57373; }
+.callout.tip .callout-body { color: var(--gold2); }
+.callout.info .callout-body { color: #81c784; }
+.callout-title { font-weight: 700; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+.stat-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin: 24px 0; }
+.stat-card { background: var(--ink3); border: 1px solid var(--line); border-radius: 10px; padding: 18px 16px; text-align: center; }
+.stat-card .stat-num { font-size: 32px; font-weight: 900; color: var(--gold); line-height: 1; }
+.stat-card .stat-label { font-size: 11px; color: var(--text3); margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+.shop-category { margin-bottom: 28px; }
+.shop-cat-title { font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.shop-items { display: flex; flex-wrap: wrap; gap: 8px; }
+.shop-item { background: var(--ink3); border: 1px solid var(--line); border-radius: 20px; padding: 5px 14px; font-size: 13px; color: var(--text2); }
+.shop-item.gold { border-color: var(--gold3); color: var(--gold); background: rgba(201,168,76,0.05); }
+.athlete-list { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+.athlete-card { display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; background: var(--ink3); border: 1px solid var(--line); border-radius: 10px; }
+.athlete-icon { font-size: 20px; flex-shrink: 0; }
+.athlete-text { font-size: 14px; color: var(--text2); line-height: 1.6; }
+.athlete-text strong { color: var(--text); }
+.gold-divider { display: flex; align-items: center; gap: 16px; max-width: 200px; margin: 32px auto; }
+.gold-divider-line { flex:1; height:1px; background:var(--line2); }
+.gold-divider-d { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); }
+.cta-section { text-align: center; padding: 60px 24px; border-top: 1px solid var(--line); background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.03)); }
+.cta-section h3 { font-family: 'Cairo', sans-serif; font-size: 32px; font-weight: 900; color: var(--text); margin-bottom: 12px; }
+.cta-section p { font-size: 15px; color: var(--text2); margin-bottom: 28px; }
+.cta-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #000; text-decoration: none; font-size: 14px; font-weight: 700; font-family: 'Cairo', sans-serif; padding: 15px 32px; border-radius: 12px; transition: all 0.2s; }
+.cta-btn:hover { background: #2de070; transform: translateY(-1px); }
+.cta-back { display: inline-flex; align-items: center; gap: 8px; color: var(--text3); text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-top: 20px; transition: color 0.2s; }
+.cta-back:hover { color: var(--gold); }
+.topnav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; background: rgba(8,8,8,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.topnav-brand { font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; font-weight: 700; text-decoration: none; }
+.topnav-back { font-size: 11px; letter-spacing: 1px; color: var(--text3); text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+.topnav-back:hover { color: var(--gold); }
+.wa-float { position: fixed; bottom: 24px; left: 24px; z-index: 999; text-decoration: none; }
+.wa-float-btn { width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.35); transition: transform 0.2s; }
+.wa-float:hover .wa-float-btn { transform: scale(1.08); }
+.wa-float-btn svg { width: 26px; height: 26px; }
+@media (max-width: 600px) {
+  .hero { padding: 100px 20px 50px; }
+  .content { padding: 0 16px 60px; }
+  .toc-section { padding: 40px 16px; }
+  .chapter { padding: 40px 0; }
+  .benefit-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .toc-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="/" class="topnav-brand">أشرف الأحمدي</a>
+  <a href="/" class="topnav-back">→ الرجوع</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-geo">
+    <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+      <line x1="0" y1="120" x2="800" y2="120" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="0" y1="380" x2="800" y2="380" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="180" y1="0" x2="180" y2="500" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="620" y1="0" x2="620" y2="500" stroke="#C9A84C" stroke-width="0.5"/>
+      <circle cx="400" cy="250" r="100" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+      <circle cx="400" cy="250" r="170" fill="none" stroke="#C9A84C" stroke-width="0.3"/>
+      <rect x="360" y="210" width="80" height="80" fill="none" stroke="#C9A84C" stroke-width="0.5" transform="rotate(45 400 250)"/>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">أشرف الأحمدي · دليل صحة</div>
+    <h1>دليل <em>الكارنيفور</em><br>الكامل</h1>
+    <p class="hero-sub">كل ما محتاجو تعرفو باش تبدا رحلتك مع الكارنيفور — من الأساسيات لحتى قائمة التسوق والأكل اليومي.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">تغذية</span>
+      <span class="hero-tag">أداء</span>
+      <span class="hero-tag">التسوق</span>
+      <span class="hero-tag">الصحة</span>
+      <span class="hero-tag">برنامج الأكل</span>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-arrow"></div>
+      <span>ابدأ القراءة</span>
+    </div>
+  </div>
+</div>
+
+<div class="toc-section">
+  <div class="section-eyebrow">محتويات الدليل</div>
+  <div class="toc-grid">
+    <a href="#miracle" class="toc-item"><span class="toc-num">01</span>المعجزة ديال الكارنيفور</a>
+    <a href="#how" class="toc-item"><span class="toc-num">02</span>كيفاش كيخدم</a>
+    <a href="#intro" class="toc-item"><span class="toc-num">03</span>البداية مع الدايت</a>
+    <a href="#scaling" class="toc-item"><span class="toc-num">04</span>كيفاش تزيد فيه</a>
+    <a href="#pitfalls" class="toc-item"><span class="toc-num">05</span>الأخطاء الشايعة</a>
+    <a href="#bulking" class="toc-item"><span class="toc-num">06</span>Bulking على الكارنيفور</a>
+    <a href="#athletes" class="toc-item"><span class="toc-num">07</span>الرياضيين المحترفين</a>
+    <a href="#calories" class="toc-item"><span class="toc-num">08</span>Calories</a>
+    <a href="#health" class="toc-item"><span class="toc-num">09</span>المشاكل الصحية</a>
+    <a href="#scams" class="toc-item"><span class="toc-num">10</span>Fiber و Cholesterol: نصبتين</a>
+    <a href="#meat" class="toc-item"><span class="toc-num">11</span>أشنو تاكل من اللحم</a>
+    <a href="#shopping" class="toc-item"><span class="toc-num">12</span>قائمة التسوق</a>
+    <a href="#mealplan" class="toc-item"><span class="toc-num">13</span>برنامج الأكل</a>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">المقدمة</div>
+      <h2>حكاية <em>محطة البنزين</em></h2>
+    </div>
+    <div class="prose">
+      <p>نهار من الأيام كنت أنا وصاحبي "Brain Fog Retard" كنهضروا على طوموبيلاتنا. كل حاجة فيهم كتخدم مزيان — سريعة وموثوقة وكل واحد كيتفرج علينا منين كنمشيو. حان وقت الكاربيران.</p>
+      <p>Brain Fog Retard شافني مشيت وسألني فين غادي.</p>
+      <p><em>"الخزان خاوي، خاصني نعبيه."</em></p>
+      <p><em>"واش؟ فين غادي؟"</em></p>
+      <p><em>"... للمحطة؟"</em></p>
+      <p><em>"للمحطة! علاش تدير هاد الشي؟ المكانيسيان ديالي قال ليا هاد الشي خطير. أنا كنحط زيت الطبخ — الطوموبيل كتشمم البوبكورن وهي رخيصة!"</em></p>
+      <p>كنجاوبو براسي فقط لأني عارف ما كاينش ما نناقشو. جوج أسابيع بعدها شفت صاحبي كيركب الطوبيس. ما فاجأنيش.</p>
+      <p>أنا درت ketovore جوج أسابيع وبعدها كارنيفور كامل. <strong>هدفي هو نعطيك المعلومات اللازمة باش تبدأ تعيش بكامل طاقتك كإنسان.</strong></p>
+    </div>
+  </div>
+
+  <div class="chapter" id="miracle">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 01</div>
+      <h2><em>معجزة</em> الكارنيفور</h2>
+    </div>
+    <div class="prose">
+      <p>الناس العاديين كيعيشوا فالألم بشكل دايم — وبما كانوا هكذا طول عمرهم، كيظنوا هاد الشي عادي. الأمراض والسرطان صارت حاجة يومية كأنها حتمية مع التقدم في السن.</p>
+      <p>حنا عارفين هاد الشي مشي صحيح. الناس كيمرضوا لأنهم كيديروا حاجة غلطاء. فهاد الحالة، هي كياكلوا السم بكميات صغيرة — السكر وoxalates والمبيدات والمواد المسرطنة. كل هاد الشي من أجل شوية نكهة فالفم.</p>
+      <p><strong>الكارنيفور هو الجواب لأن جسمك مصمم أصلاً ليأكل ويمتص اللحم.</strong> منين تاكل حاجات أخرى كالخضار والفواكه، كتحط وقود رديء فالمحرك. زد عليه التوكسينات الموجودة فالنباتات والمبيدات والسكر، وجسمك غادي يكون فحالة حرب دايمة باش يبقى حي.</p>
+    </div>
+
+    <div class="gold-divider"><div class="gold-divider-line"></div><div class="gold-divider-d"></div><div class="gold-divider-line"></div></div>
+
+    <div class="section-eyebrow" style="margin-bottom:16px;">علاش الكارنيفور؟</div>
+    <div class="benefit-grid">
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>تركيز ليزر</strong> — الدماغ كيخدم أحسن على ketosis والدهون المشبعة</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>Testosterone عالي جداً</strong> — يتضاعف أو يتثلث بدون آثار جانبية</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>بشرة مثالية</strong> — أقل التهاب، ملامح أوضح وأحلى</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>طاقة أكثر بكاش</strong> — الجسم كيحرق الدهون عوض الكارب كمصدر رئيسي</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>بناء عضل 2x أسرع</strong> — مع حرق الدهون في نفس الوقت</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>خسارة وزن مذهلة</strong> — حتى 10 كيلو فشهر واحد</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>صحة الأمعاء أحسن</strong> — هضم وامتصاص ممتازين</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>أداء رياضي أفضل</strong> — تحمل وقوة في نفس الوقت</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>الأمراض كتولي تتعالج</strong> — ADHD، مشاكل المفاصل، الهضم، وأكثر</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>الرغبة الجنسية ترتفع</strong> — توازن هرموني كامل</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>أسنان أبيض</strong> — السكر ما عادش كيخرب أسنانك</div></div>
+      <div class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>توفير الوقت</strong> — جسمك كيمتص كل ما تاكله تقريباً</div></div>
+    </div>
+  </div>
+
+  <div class="chapter" id="how">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 02</div>
+      <h2>كيفاش <em>كيخدم</em></h2>
+    </div>
+    <div class="prose"><p>هاد الدايت هو أسهل دايت فالدنيا.</p></div>
+
+    <div class="callout tip" style="margin:20px 0;">
+      <div class="callout-icon">🥩</div>
+      <div class="callout-body">
+        <div class="callout-title">القاعدة الذهبية</div>
+        اكل غير اللحم والملح والماء. لا نباتات، لا شي صناعي. هاد كاع.
+      </div>
+    </div>
+
+    <div class="section-eyebrow" style="margin:28px 0 12px;">كل بحرية</div>
+    <ul class="rules-list">
+      <li>البقري والبيض والخروف والغنم والماعز — هاذي هي الأفضل</li>
+      <li>الدجاج والخنزير والديك الرومي — مزيانين كذلك</li>
+      <li>طيب بقد ما تحب واكل حتى تشبع</li>
+      <li>اكل فأي وقت تحس بالجوع</li>
+    </ul>
+
+    <div class="section-eyebrow" style="margin:28px 0 12px;">ما تاكلش هاد الأشياء</div>
+    <ul class="rules-list no">
+      <li>لا نباتات، لا فواكه، لا خضار، لا خضرة حتى "الصحية" منها</li>
+      <li>لا سكر، لا محليات صناعية (Splenda، stevia)</li>
+      <li>لا عسل، لا مكسرات، لا قهوة</li>
+      <li>الحليبيات فقط بكميات صغيرة جداً كتوابل</li>
+    </ul>
+  </div>
+
+  <div class="chapter" id="intro">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 03</div>
+      <h2>البداية <em>مع الدايت</em></h2>
+    </div>
+    <div class="prose">
+      <p>إلا كنت غادي تبدأ اليوم، <strong>ما نصحكش تمشي 100% من البداية.</strong> جسمك على الأرجح معتاد على الكارب دابا. إلا مشيتي كارنيفور كامل مباشرة، جسمك غادي يتصدم — صداع، تعب، brain fog، ألم عضلي.</p>
+      <p><strong>Ketovore</strong> هي طريقة بداية ممتازة. كتاكل أساساً حيوانيات وعوض الكارب كتزيد خضار قليلة الكارب كالبروكولي والقرنبيط، وفواكه قليلة الكارب كالأفوكادو والتوت. هاد الشي اللي دريت حتى جسمي بديا يقولي خلي الخضار.</p>
+    </div>
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <div class="callout-title">Ketovore بكلام بسيط</div>
+        لحم + خضار قليلة الكارب (سبانخ، بروكولي، قرنبيط، فلفل) + فواكه قليلة الكارب (أفوكادو، توت). مرحلة انتقالية ممتازة قبل الكارنيفور الكامل.
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter" id="scaling">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 04</div>
+      <h2>كيفاش <em>تزيد فيه</em></h2>
+    </div>
+    <div class="prose">
+      <p>بعد 2 إلى 3 أسابيع من تقليل الكارب (أقل من 50 غرام في اليوم)، جسمك غادي يدخل <strong>ketosis</strong> — يعني الدهون صارت مصدر الطاقة الرئيسي عوض الكارب. الانتقال للكارنيفور الكامل دابا غادي يكون أسهل بكاش.</p>
+      <p><strong>واش على الحليبيات والتوابل؟</strong> كن صارماً لمدة شهر على الأقل قبل ما تعيد تجربة أي حاجة. إلا ما قطعتيهاش، ما غادي تعرفش أشنو كيضرك.</p>
+    </div>
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <div class="callout-title">مهم</div>
+        دير شهر كامل كارنيفور صارم. إلا رجعتي تجرب حاجة، دير واحدة واحدة وشوف كيفاش كيرد جسمك.
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter" id="pitfalls">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 05</div>
+      <h2>الأخطاء <em>الشايعة</em></h2>
+    </div>
+    <div class="prose">
+      <p>معظم الناس اللي كيقولوا الكارنيفور ما خدمش، كيديروا حاجة غلطاء. هاه أهم المشاكل:</p>
+    </div>
+
+    <div style="margin-top:24px;display:flex;flex-direction:column;gap:14px;">
+      <div class="callout warn">
+        <div class="callout-icon">🧀</div>
+        <div class="callout-body"><div class="callout-title">الجبن والحليبيات</div>استعملهم غير كتوابل، ما تاكلهمش كوجبة أساسية. الزبدة والسمن مزيانين لأن اللاكتوز ما كاينش فيهم. اكثر من الجبن = حمى وصداع وضعف.</div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">🍊</div>
+        <div class="callout-body"><div class="callout-title">Vitamin C — الأسطورة</div>
+        الناس كيقولوا كارنيفور ما عندوش Vitamin C وغادي تصاب بـscurvy. الحقيقة: محتاجين غير 10mg في اليوم باش تتفادى scurvy. وفوق هاد الشي، منين تقطع الكارب، جسمك كيبدا ينتج "Endogenous Antioxidants" اللي عندهم نفس دور Vitamin C. الكارب هو اللي كان يجبرك تحتاج Vitamin C أكثر — باختصار: <strong>Vitamin C ما كاينش فيها مشكل على الكارنيفور.</strong>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">⏱️</div>
+        <div class="callout-body"><div class="callout-title">الصيام — ما محتاجوش</div>
+        كل فوائد الصيام — تقليل الأكسدة، autophagy، وغيرها — جاية من عدم أكل القمامة. إلا كنت كتاكل أكل إنساني صحيح، كتجي بكل هاد الفوائد + كتاخد كل المواد الغذائية اللي جسمك يحتاجها. Win-Win للكارنيفور مرة أخرى. <strong>Fun fact:</strong> "Fasting Mimicking Diet" شبيهة جداً بـketo — مصادفة؟ ما نظنش.
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-icon">🍎</div>
+        <div class="callout-body"><div class="callout-title">الكارنيفور + الفواكه</div>
+        Fructose والكارب عندهم نفس التأثير على الجسم، مهما كان المصدر. السكر فجسمك هو قاتل، والفواكه كذلك — ما كيعطيكش أي فوائد صحية زايدة. الناس اللي كيحسوا أحسن مع الفواكه، كان عندهم مشكلة أخرى ما حلوهاش — Hamza مثلاً كان شارب القهوة.
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-icon">☕</div>
+        <div class="callout-body"><div class="callout-title">القهوة</div>
+        نبات — لا. المشكل الرئيسي هو أنها كتتداخل مع إشارات التبول والهضم ديال جسمك وكتبلبلها. كنت كتحس بها مزيان لكن هي كتخفي المشاكل. إلا بغيت تبقى معها فلا مشكل، لكن اعرف أنها مش optimal وممكن تضرك.
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">⚡</div>
+        <div class="callout-body"><div class="callout-title">تعب وBrain Fog — Keto Flu</div>عادي فالأيام الأولى. زيد الملح والماء والدهون. غادي يمشي بسرعة.</div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">💩</div>
+        <div class="callout-body"><div class="callout-title">مشاكل الهضم</div>إمساك = محتاج دهون أكثر. إسهال = زيد البروتين أو قلل الدهون. بسيطة هكذا.</div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">🍽️</div>
+        <div class="callout-body"><div class="callout-title">الأكل القليل</div>إشارات الجوع ديالك متعطلة من سنين بسبب الكارب. اصبر وخلي جسمك يرتب راسو. اختار القطع الغنية بالسعرات وروتينياً بيدو الأمور.</div>
+      </div>
+
+      <div class="callout tip">
+        <div class="callout-icon">🍖</div>
+        <div class="callout-body"><div class="callout-title">الأكل الكثير — عادي جداً</div>
+        أنا كناكل حتى 4000 سعرة في اليوم وكنكون جايع — وأنا 64 كيلو و1.77م. سبب هاد الشي هو أنني جيت من خلفية sarcopenic (ما كنتش كناكل كافي من أكل صح). جسمي كان يطلب كل ما فاتو. منين تكون على الكارنيفور، جسمك غادي يقولك الكمية الصحيحة — ما تخافش، كيتنظم مع الوقت.
+        </div>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">🍺</div>
+        <div class="callout-body"><div class="callout-title">الكحول — للخاسرين لكن...</div>
+        كلنا عارفين الكحول ضار. وغادي تحس بتأثيره أكثر على الكارنيفور لأن جسمك صار نظيف ويعرفو كسم. لكن إلا خدمتيه في "مناسبات اجتماعية" — ما يعنيش ترجع للخبز والمعكرونة كذلك. ممكن تبقى كارنيفور وتشرب الكحول أحياناً.
+        </div>
+      </div>
+
+      <div class="callout info">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body"><div class="callout-title">إلا غلطتي — ماشي مشكل</div>النسخة ديالك اللي كتحاول وكتبقى كارنيفور معظم الوقت أحسن بكاش من اللي ما كيحاولش أصلاً.</div>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-icon">🤔</div>
+        <div class="callout-body"><div class="callout-title">Saladino، Lillie Kane والسابقين على الكارنيفور</div>
+        كلهم إما كانوا كيزيدوا حاجات أخرى أو كيديروا أشياء غريبة. Dr Chaffee دير كارنيفور أكثر من 10 سنين وكيعيش بامتياز. Lillie Kane كانت كتاكل حاجات أخرى أحياناً. ما لقيتش حتى واحد قال الكارنيفور كان يضره بدون حاجة أخرى فحياته كانت قادرة تكون السبب.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter" id="bulking">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 06</div>
+      <h2>Bulking <em>على الكارنيفور</em></h2>
+    </div>
+    <div class="prose">
+      <p>غادي تتفاجأ. <strong>الBulking على الكارنيفور أسهل بكثير من الكارب.</strong> أنا ما كنمشيش للحمام غير على 3 أيام وكناكل 7 بيضات وكيلو ونص لحم في الحد الأدنى. يعني جسمي كيمتص كل الأكل — أكثر عضلات، أكثر نمو.</p>
+      <p>الكارب ما كيبنيش عضلات. كيتخزن كدهون وglycogen وماء فالعضلات. هاداك علاش الناس كيحسوا راهم كبار، لكن كيخسروا كل شي منين يقطعوا. <strong>غير اللحم هو اللي كيبني عضل حقيقي.</strong></p>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-num">250g</div><div class="stat-label">بروتين يومي</div></div>
+      <div class="stat-card"><div class="stat-num">1.2kg+</div><div class="stat-label">لحم في اليوم</div></div>
+      <div class="stat-card"><div class="stat-num">7+</div><div class="stat-label">بيضات يومياً</div></div>
+      <div class="stat-card"><div class="stat-num">2x</div><div class="stat-label">نمو العضل</div></div>
+    </div>
+  </div>
+
+  <div class="chapter" id="athletes">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 07</div>
+      <h2>الرياضيين <em>المحترفين</em></h2>
+    </div>
+    <div class="prose">
+      <p>الرياضي اللي كياكل كارنيفور غادي يكون دايماً أفضل — طاقة أكثر، نوم أحسن، تحمل أعلى، صحة أفضل، تركيز أحسن، وجسم قادر يتمرن صايم. "Carb boost" ما كيدومش غير ساعة أو جوج. <strong>الصحة العامة هي الملك.</strong></p>
+    </div>
+    <div class="athlete-list">
+      <div class="athlete-card"><div class="athlete-icon">🏆</div><div class="athlete-text"><strong>Shawn Baker</strong> — حامل الرقم القياسي العالمي في التجديف لفئته العمرية</div></div>
+      <div class="athlete-card"><div class="athlete-icon">🚴</div><div class="athlete-text"><strong>Sean 'Sako' Sakinofsky</strong> — دراج تحمل نخبوي كيركب مئات الكيلومترات بدون وقود</div></div>
+      <div class="athlete-card"><div class="athlete-icon">🏅</div><div class="athlete-text"><strong>Ryan Talbot</strong> — ربح البطولة العشارية بعد 6 أيام من إصابة في الوتر الركبي</div></div>
+      <div class="athlete-card"><div class="athlete-icon">🏃</div><div class="athlete-text"><strong>Alex McDonald</strong> — جرى 5 ماراطونات في 5 أيام وهو صايم كامل</div></div>
+      <div class="athlete-card"><div class="athlete-icon">💪</div><div class="athlete-text"><strong>Vince Gironda</strong> — أسطورة كمال الأجسام، Iron Guru</div></div>
+    </div>
+  </div>
+
+  <div class="chapter" id="calories">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 08</div>
+      <h2>Calories <em>ما كيهموش</em></h2>
+    </div>
+    <div class="prose">
+      <p>Calories ما كيهموش إلا كنت كتاكل كارنيفور. <strong>جسمك هو مصنع كيمياوي مش طبخة، اللي كيحتاجو هو المواد الغذائية الصحيحة من الأكل الصح — مش أي "وقود".</strong></p>
+      <p>منين تعطي جسمك اللبنات الأساسية الصحيحة، غادي يخدم مزيان ويقولك وقتاش يحتاج أكثر ووقتاش يكفيه. إلا كنت ما زلت في البداية، MyFitnessPal ممكن يساعدك تكون عندك فكرة، لكن ما تضغطش على الحساب — كل لحم واسمع جسمك.</p>
+    </div>
+    <div class="pullquote">
+      <p>عطي جسمك اللي يحتاجو وغادي تبان زوين. Calories هي قياس للحرارة — الأكل عندو وزن ومواد غذائية مش غير وحدات طاقة.</p>
+    </div>
+  </div>
+
+  <div class="chapter" id="health">
+    <div class="chapter-header">
+      <div class="chapter-num">فصل إضافي</div>
+      <h2>المشاكل الصحية <em>حول الكارنيفور</em></h2>
+    </div>
+    <div class="prose">
+      <p>كاين واحد كيتكلم على blood work وكيقول الكارنيفور خطير. باختصار: كل النطاقات الطبية فاسدة. درست الطب سنة كاملة وكنقولك أن كثير من الأشياء مخلوطة ومتلاعب فيها، خصوصاً فيما يخص التغذية.</p>
+      <p>قريت مجموعة من الدراسات والمراجعات (analyses of analyses) وفعلاً معظمها كتقول الكارنيفور خطير. هاد الكلام كلو BS. خاصك تشوف اللي كيخدم فالحياة الواقعية وكيفاش كيحسسك — هاد هو الدليل الحقيقي. مش ورقة.</p>
+    </div>
+    <div class="callout tip">
+      <div class="callout-icon">🦋</div>
+      <div class="callout-body"><div class="callout-title">الغدة الدرقية — Thyroid</div>غادي تكون مزيان. التوازن الهرموني الكامل متعالج بسبب الحالة الاستقلابية الصحيحة. إلا بقيتي على كارنيفور كل شي مزيان.</div>
+      </div>
+  </div>
+
+  <div class="chapter" id="scams">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 09</div>
+      <h2>Fiber و Cholesterol: <em>نصبتين</em></h2>
+    </div>
+
+    <div class="section-eyebrow" style="margin-bottom:16px;">نصبة الFiber</div>
+    <div class="prose">
+      <p>الكارنيفور فيه 0 fiber — وهاد الشي مفروض يكون ضار صح؟ البكتيريا ديال الأمعاء غادي تعاني، إمساك، سرطان القولون... <strong>الحقيقة هي العكس بالضبط.</strong></p>
+    </div>
+    <div class="pullquote">
+      <p>"الFiber في أحسن أحواله هو ترياق لتأثيرات السكر السامة. في أسوأ أحواله، كيهيج الجهاز الهضمي ويزيد احتمالات التهاب الأمعاء ويسبب إمساكاً شديداً."</p>
+    </div>
+    <div class="prose">
+      <p><strong>السرطان والإمساك:</strong> دراستان كبيرتان نُشرتا في New England Journal of Medicine — واحدة على 1400 شخص من شبكة أطباء فينيكس، وأخرى بـ30 مليون دولار من National Cancer Institute — كلتاهما أكدتا أن الFiber <strong>ما عندها أي تأثير على سرطان القولون.</strong></p>
+      <p>الإمساك هو وجود كتلة كبيرة جداً فالأمعاء، مش قليلة. علاش تزيد فيها أكثر؟ الFiber كتزيد سرعة المرور فالأمعاء فقط لأنها مهيجة وجسمك كيريد يتخلص منها بسرعة.</p>
+      <p>وأسوأ من هاد كلو: <strong>Fiber وphytic acid كيسرقوا المعادن من جسمك</strong> قبل ما تتمتص — تشد عليها وتطيحها مع البراز.</p>
+      <p>منين تكون على كارنيفور، كتاكل كيلوين بحال كيلوين من اللحم كل يوم وما كتمشيش للحمام غير كل يومين أو ثلاثة. أين غدا كل هاد اللحم؟ <em>لجسمك.</em> للدماغ، للطاقة، للخلايا، للأسنان، للأظافر، للبكتيريا المفيدة. هاد هو اللي خلق عنده disease reversal — الجسم صار يحصل على كل ما يحتاجه.</p>
+    </div>
+
+    <div class="gold-divider" style="margin:40px auto;"><div class="gold-divider-line"></div><div class="gold-divider-d"></div><div class="gold-divider-line"></div></div>
+
+    <div class="section-eyebrow" style="margin-bottom:16px;">نصبة الCholesterol</div>
+    <div class="prose">
+      <p>كناكل 10 مرات النسبة "الطبيعية" من Cholesterol حسب MyFitnessPal. حاسس بروعة. <strong>Cholesterol المرتفع صحي.</strong> جسمك يحتاجو باش يبني testosterone ويحافظ على كل خلية فجسمك. منين كتاكل الكارب، Cholesterol كيرتفع فالجسم باش يحارب السكر عبر الالتهاب — كنلوموا الحراقة على النار اللي ما شعلوهاش.</p>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">📉</div>
+      <div class="callout-body">
+        <div class="callout-title">Cholesterol المنخفض خطير — هاه الأدلة</div>
+        <div style="columns:2;gap:12px;margin-top:8px;">
+          <div>• يقلل متوسط العمر</div>
+          <div>• يزيد خطر السرطان</div>
+          <div>• LDL المنخفض يزيد خطر الزهايمر</div>
+          <div>• يزيد خطر باركنسون</div>
+          <div>• يزيد خطر مشاكل الصحة النفسية</div>
+          <div>• يضعف الإدراك والتركيز</div>
+          <div>• Statins (دواء Cholesterol) فاشلة وخطيرة</div>
+          <div>• دايت قليل الدهون ما كيقلل لا الأمراض القلبية ولا الوفيات</div>
+          <div>• LDL المنخفض يزيد خطر السكتة الدماغية</div>
+          <div>• 75% من مرضى النوبات القلبية عندهم LDL عادي أو منخفض</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon">📈</div>
+      <div class="callout-body">
+        <div class="callout-title">Cholesterol المرتفع — الفوائد</div>
+        <div style="columns:2;gap:12px;margin-top:8px;">
+          <div>• يقلل كل أسباب الوفاة</div>
+          <div>• يقلل خطر الخرف</div>
+          <div>• يقلل خطر باركنسون</div>
+          <div>• يقلل خطر سرطان القولون</div>
+          <div>• يقلل خطر سرطان الثدي</div>
+          <div>• يحمي من الالتهابات وأمراض القلب</div>
+          <div>• يساعد في إصلاح آفات الدماغ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <p>"سنة 1953، Ancel Keys طرح فرضية الدهون: الدهون المشبعة ترفع Cholesterol وCholesterol العالي يسبب أمراض القلب. كرر هاد الرسالة حتى بدا الناس يصدقوها. المشكلة: فرضيته ما اتأكدت قط. سنة 1965، صناعة السكر الأمريكية لاعبات الدراسات. سنة 1980، صناعة الأدوية بدات statins — تجارة مربحة جداً. وأمراض القلب صارت القاتل الأول في العالم الصناعي."</p>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-icon">🏆</div>
+      <div class="callout-body"><div class="callout-title">الخلاصة</div>زيد Cholesterol ديالك — جسمك يحتاجو. والكارنيفور هو أفضل طريقة لذلك.</div>
+      </div>
+  </div>
+
+  <div class="chapter" id="meat">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 10</div>
+      <h2>أشنو تاكل <em>من اللحم</em></h2>
+    </div>
+    <div class="prose">
+      <p><strong>الحيوانات المجترة هي الملوك.</strong> هاد الحيوانات عندها جهاز هضمي متطور جداً (4 معد) — البقر والخروف والغنم والماعز والبيسون. عملية التخمير فجهازها الهضمي كتنتج Conjugated Linoleic Acid (CLA) — مضاد للسرطان، يعزز الجهاز المناعي، يقلل الدهون في الجسم، وما كيتصنعش فالجسم ذاتو.</p>
+    </div>
+
+    <div class="section-eyebrow" style="margin:28px 0 14px;">تصنيف اللحوم</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+      <div class="callout tip"><div class="callout-icon">👑</div><div class="callout-body"><div class="callout-title">الفئة S — المجترات</div>البقري، الخروف، الغنم، الماعز، البيسون، العجل — الأكثر قيمة غذائية، فيها CLA</div></div>
+      <div class="callout info"><div class="callout-icon">✅</div><div class="callout-body"><div class="callout-title">الفئة A — لحوم أخرى</div>الدجاج، الديك الرومي، الخنزير، البط — مزيانين لكن جودتهم كتتوقف على كيفاش تربوا</div></div>
+      <div class="callout info"><div class="callout-icon">🐟</div><div class="callout-body"><div class="callout-title">الفئة B — المأكولات البحرية</div>السلمون، السردين، الماكريل، الجمبري، المحار، التونة — مزيانين لكن قدمو المجترات. انتبه للتوكسينات المعدنية فالسمك الكبير. تنبيه: microplastics غزو البحر للأسف — غادي تاخد L على هاد الشي. لكن السلمون والسردين والماكريل لا يزالوا خيارات ممتازة.</div></div>
+      <div class="callout warn" style="margin-top:8px;"><div class="callout-icon">🐻‍❄️</div><div class="callout-body"><div class="callout-title">Fun Fact — كبدة الفقمة والدب القطبي (Polar Bear)</div>ممكن تموت إلا كليتي كبدة الفقمة (Seal) أو الدب القطبي (Polar Bear) بسبب Hypervitaminosis — Vitamin A فيهم بكميات مميتة 😅</div></div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">🐔</div>
+      <div class="callout-body"><div class="callout-title">الدجاج والخنزير والديك الرومي — أحادية المعدة (Monogastric)</div>
+      هاد الحيوانات عندها غير معدة واحدة، يعني جهازها الهضمي ما قادرش يعالج السموم النباتية والمواد الكيميائية بحال المجترات. هاداك علاش جودة تغذيتها كتتوقف بشكل كبير على كيفاش تربوا — الدجاج المرباو على الحبوب مثلاً كيحمل ما أكلوه. لا يزالوا أفضل بكثير من الخيارات الأخرى، غير مش بنفس جودة البقري.
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body"><div class="callout-title">الأحشاء — مع الحذر</div>قيمة غذائية عالية وبسعر رخيص. لكن اكثر منها كيسبب Hypervitaminosis (جرعة زايدة من الفيتامينات). دير بيهم نادراً كـboost. قلب البقر كيشبه التندرلوين في الطعم وهو رخيص — ننصح بيه بشدة.</div>
+    </div>
+  </div>
+
+  <div class="chapter" id="shopping">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 11</div>
+      <h2>قائمة <em>التسوق</em></h2>
+    </div>
+
+    <div class="section-eyebrow" style="margin-bottom:16px;">🌿 قائمة Ketovore</div>
+    <div class="shop-category">
+      <div class="shop-cat-title">اللحوم</div>
+      <div class="shop-items">
+        <span class="shop-item gold">Chuck Roast</span><span class="shop-item gold">لحم بقري مفروم</span><span class="shop-item gold">ضلوع بقري</span><span class="shop-item gold">كبدة بقري</span><span class="shop-item gold">قلب بقري</span><span class="shop-item">دجاج</span><span class="shop-item">ديك رومي</span><span class="shop-item">سلمون</span><span class="shop-item">سردين</span><span class="shop-item">تونة</span><span class="shop-item">بيض</span><span class="shop-item">خنزير</span>
+      </div>
+    </div>
+    <div class="shop-category">
+      <div class="shop-cat-title">الدهون والإضافات</div>
+      <div class="shop-items">
+        <span class="shop-item gold">زبدة</span><span class="shop-item gold">سمن</span><span class="shop-item">جبن (ريكوتا/كوتاج)</span><span class="shop-item">يوغورت</span><span class="shop-item">أفوكادو</span>
+      </div>
+    </div>
+    <div class="shop-category">
+      <div class="shop-cat-title">خضار قليلة الكارب (Ketovore فقط)</div>
+      <div class="shop-items">
+        <span class="shop-item">سبانخ</span><span class="shop-item">بروكولي</span><span class="shop-item">قرنبيط</span><span class="shop-item">فلفل</span><span class="shop-item">خيار</span>
+      </div>
+    </div>
+
+    <div class="gold-divider" style="margin:36px auto;"><div class="gold-divider-line"></div><div class="gold-divider-d"></div><div class="gold-divider-line"></div></div>
+
+    <div class="section-eyebrow" style="margin-bottom:16px;">🍗 قائمة الكارنيفور البسيط (15 يوم)</div>
+    <div class="callout info">
+      <div class="callout-icon">💰</div>
+      <div class="callout-body">
+        <div class="callout-title">اقتصادي ومغذي</div>
+        500g كبدة/طحال بقري · 8kg لحم مفروم · 120 بيضة (4 أطباق) · 1kg زبدة · 9kg أفخاذ دجاج · ملح<br><br>
+        <strong>قطع إضافية للتنويع:</strong> Chuck Roast، Short Ribs، Beef Shank، Shoulder، قلب — كلها 4–10 دولار للكيلو.
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon">🐷</div>
+      <div class="callout-body"><div class="callout-title">Brokie Tip — Pork Rinds هي cheat code</div>
+      Pork Rinds (قشرة الخنزير المقلية) هي بحال الشيبس لكن 100% كارنيفور — لذيذة وغنية بالسعرات وممكن حتى تديرها بحال الخبز نعم هاد الشي ممكن 😂. نفس الشي للأحشاء: الطحال والرئة والكرشة (tripe) رخيصة جداً وغذائية.
+      </div>
+    </div>
+
+    <div class="gold-divider" style="margin:36px auto;"><div class="gold-divider-line"></div><div class="gold-divider-d"></div><div class="gold-divider-line"></div></div>
+
+    <div class="section-eyebrow" style="margin-bottom:16px;">🥩 كارنيفور النخبة</div>
+    <div class="shop-category">
+      <div class="shop-cat-title">القطع الفاخرة (للباوند)</div>
+      <div class="shop-items">
+        <span class="shop-item gold">Ribeye 10–20$</span><span class="shop-item gold">Filet Mignon 15–25$</span><span class="shop-item gold">New York Strip 10–18$</span><span class="shop-item gold">T-Bone 8–15$</span><span class="shop-item gold">Tomahawk 20–40$</span>
+      </div>
+    </div>
+    <div class="callout tip">
+      <div class="callout-icon">🌿</div>
+      <div class="callout-body"><div class="callout-title">الكلمات اللي تبحث عنها</div>Pasture Raised · Grass Fed · Range Free. إلا شككتي، اختار Grass Fed. الفرق في الطعم والجودة كبير جداً.<br><br>
+      <strong>⚠️ انتبه من "Free Range" و"Cage Free"</strong> — كيتركوهم برا غير ساعة ثم يرجعوهم لظروف سيئة ويحقنوهم بالهرمونات. ما تثقش فيهم كثير.<br><br>
+      <strong>دهون ممتازة أخرى:</strong> Ghee · Tallow (شحم البقري) · Lard (شحم الخنزير) — كلها خيارات رائعة غير الزبدة.
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter" id="mealplan">
+    <div class="chapter-header">
+      <div class="chapter-num">الفصل 12</div>
+      <h2>برنامج <em>الأكل</em></h2>
+    </div>
+    <div class="prose">
+      <p>ما محتاجش برنامج معقد. <strong>عبا ثلاجتك باللحوم والقطع اللي كتحبها واختار أسهل طريقة طبخ.</strong></p>
+    </div>
+
+    <div class="section-eyebrow" style="margin:28px 0 14px;">المعادلة</div>
+    <div class="callout tip">
+      <div class="callout-icon">🍳</div>
+      <div class="callout-body">
+        <div class="callout-title">كل وجبة</div>
+        <strong>لحم</strong> (أي طريقة طبخ) + <strong>بيض</strong> (أي طريقة طبخ) + <strong>زبدة</strong><br>
+        اختياري: شوية حليبيات (جبن، كريمة حامضة) كتوابل فقط.
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;">
+      <div>
+        <div class="shop-cat-title" style="margin-bottom:10px;">طرق طبخ اللحم</div>
+        <ul class="rules-list" style="font-size:14px;">
+          <li>على الجريل</li><li>في الفرن</li><li>على الطاجين</li><li>Braising</li>
+          <li>الشواء</li><li>Sous Vide</li><li>طبخ بطيء</li>
+        </ul>
+      </div>
+      <div>
+        <div class="shop-cat-title" style="margin-bottom:10px;">طرق طبخ البيض</div>
+        <ul class="rules-list" style="font-size:14px;">
+          <li>مشكل (Scrambled)</li><li>مقلي</li><li>Omelette</li><li>مسلوق</li>
+          <li>Poached</li><li>مسلوق ليّن</li><li>Sunny-side up</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">الخلاصة</div>
+      <h2>🧨 خطوات عملية <em>ابدأ بيها</em></h2>
+    </div>
+    <ul class="rules-list">
+      <li>دير قائمة التسوق ديالك (حسب أهدافك)</li>
+      <li>التزم بـ15 يوم تجربة على الأقل</li>
+      <li>سجل في دفتر كيفاش كيحس جسمك كل يومين</li>
+      <li>ابقى صارم — لا حليبيات، لا نباتات، لا استثناءات للشهر الأول</li>
+      <li>شاركني بالنتايج!</li>
+    </ul>
+    <div class="prose" style="margin-top:28px;">
+      <p>شكراً على قراءتك للدليل كامل. نعرف كانت معلومات كثيرة. نتمنى تلقى فيها كل اللي تحتاجو باش تبدأ تطبق. شاركني بأسئلتك — دايما مسرور نساعد إخوتي.</p>
+      <p><strong>Bon appétit! 🥩</strong></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta-section">
+  <h3>واجد تبدأ؟</h3>
+  <p>احجز استشارة مع أشرف — غادي يساعدك تطبق هاد الشي على أهدافك الخاصة.</p>
+  <a href="https://wa.me/212764747363?text=السلام عليكم أشرف 👋 قرأت دليل الكارنيفور وبغيت نبدأ استشارة" class="cta-btn" target="_blank">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="black"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    احجز استشارة على واتساب
+  </a>
+  <br>
+  <a href="/" class="cta-back">→ الرجوع للصفحة الرئيسية</a>
+</div>
+
+<a class="wa-float" href="https://wa.me/212764747363" target="_blank">
+  <div class="wa-float-btn">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+</a>
+
+</body>
+</html>
