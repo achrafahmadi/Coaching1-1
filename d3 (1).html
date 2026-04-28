@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل فيتامين D3 الكامل — أشرف الأحمدي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold2: #e2c06a;
+      --gold3: #8a6d2a;
+      --gold-dim: rgba(201,168,76,0.12);
+      --gold-border: rgba(201,168,76,0.22);
+      --ink: #141414;
+      --ink2: #1a1a1a;
+      --ink3: #222222;
+      --ink4: #2a2a2a;
+      --line: rgba(255,255,255,0.06);
+      --line2: rgba(255,255,255,0.11);
+      --text: #f0f0f0;
+      --text2: #b8b8b8;
+      --text3: #787878;
+      --sun: #F5A623;
+      --sun-dim: rgba(245,166,35,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(20,20,20,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line2);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 54px;
+    }
+    nav a { color: var(--text3); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    nav a:hover { color: var(--gold); }
+    .nav-brand { font-weight: 700; color: var(--text); font-size: 15px; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 80px 24px 64px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      background-size: 200px 200px; opacity: 0.4; pointer-events: none; z-index: 0;
+    }
+    .hero-glow {
+      position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse at 50% 30%, rgba(245,166,35,0.1) 0%, rgba(201,168,76,0.06) 40%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; letter-spacing: 3px; color: var(--gold);
+      text-transform: uppercase; font-weight: 700; margin-bottom: 28px;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.5;
+    }
+
+    .sun-icon {
+      font-size: 64px; display: block; margin-bottom: 20px;
+      animation: pulse-sun 3s ease-in-out infinite;
+    }
+    @keyframes pulse-sun {
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(245,166,35,0.3)); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 20px rgba(245,166,35,0.6)); transform: scale(1.05); }
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 7vw, 52px);
+      font-weight: 900; line-height: 1.2; margin-bottom: 16px;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub {
+      font-size: 17px; color: var(--text2); line-height: 1.9;
+      font-weight: 300; max-width: 460px; margin: 0 auto 40px;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--sun-dim); border: 1px solid rgba(245,166,35,0.25);
+      border-radius: 100px; padding: 8px 20px;
+      font-size: 13px; font-weight: 700; color: var(--sun);
+      margin-bottom: 32px;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 40px; }
+    .tag {
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      color: var(--gold2); border-radius: 100px;
+      font-size: 12px; padding: 4px 14px; font-weight: 600; letter-spacing: 0.5px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none; border-top: 1px solid var(--line2);
+      max-width: 760px; margin: 0 auto;
+    }
+
+    /* ── TOC ── */
+    .toc-wrap { max-width: 760px; margin: 0 auto; padding: 44px 24px; }
+    .toc-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text3); margin-bottom: 18px;
+    }
+    .toc { display: flex; flex-direction: column; gap: 6px; }
+    .toc a {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none; color: var(--text2); font-size: 14px;
+      padding: 10px 14px; border-radius: 6px; border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .toc a:hover { background: var(--gold-dim); border-color: var(--gold-border); color: var(--text); }
+    .toc .num { font-size: 11px; font-weight: 700; color: var(--gold); min-width: 26px; text-align: right; }
+
+    /* ── CONTENT ── */
+    .content { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+
+    .section { margin-bottom: 72px; scroll-margin-top: 70px; }
+    .chapter-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--text3); margin-bottom: 8px;
+    }
+    .section h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 900;
+      line-height: 1.25; margin-bottom: 22px;
+    }
+    .section h2 em { font-style: normal; color: var(--gold); }
+    .section p { color: var(--text2); margin-bottom: 16px; font-size: 15px; line-height: 1.85; }
+    .section p strong { color: var(--text); }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--ink2); border: 1px solid var(--gold-border);
+      border-right: 3px solid var(--gold); border-radius: 8px;
+      padding: 18px 22px; margin: 22px 0;
+    }
+    .callout-icon { font-size: 1.3rem; margin-bottom: 6px; display: block; }
+    .callout-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+    }
+    .callout p { color: var(--text2); font-size: 14px; margin: 0; line-height: 1.7; }
+    .callout p strong { color: var(--text); }
+
+    /* ── BERG QUOTE ── */
+    .berg-quote {
+      background: linear-gradient(135deg, rgba(245,166,35,0.06), rgba(201,168,76,0.04));
+      border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 10px; padding: 28px 28px 22px;
+      margin: 28px 0; position: relative; overflow: hidden;
+    }
+    .berg-quote::before {
+      content: '"';
+      position: absolute; top: -10px; right: 20px;
+      font-size: 100px; color: var(--gold); opacity: 0.08;
+      font-family: 'Playfair Display', serif; line-height: 1;
+    }
+    .berg-quote-text {
+      font-size: 16px; color: var(--text); line-height: 1.8;
+      font-style: italic; margin-bottom: 14px; position: relative; z-index: 1;
+    }
+    .berg-quote-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .berg-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold3), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 900; color: var(--ink); flex-shrink: 0;
+    }
+    .berg-name { font-size: 13px; font-weight: 700; color: var(--gold); }
+    .berg-title-text { font-size: 12px; color: var(--text3); }
+
+    /* ── PROTOCOL BOX ── */
+    .protocol-box {
+      background: var(--ink2); border: 1px solid var(--gold-border);
+      border-radius: 10px; overflow: hidden; margin: 24px 0;
+    }
+    .protocol-header {
+      background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+      border-bottom: 1px solid var(--gold-border);
+      padding: 16px 22px; display: flex; align-items: center; gap: 12px;
+    }
+    .protocol-header-icon { font-size: 22px; }
+    .protocol-header-title { font-size: 15px; font-weight: 700; color: var(--gold); }
+    .protocol-header-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+    .protocol-rows { padding: 6px 0; }
+    .protocol-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 22px; border-bottom: 1px solid var(--line);
+      gap: 12px;
+    }
+    .protocol-row:last-child { border-bottom: none; }
+    .protocol-row-label {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--text2);
+    }
+    .protocol-row-label .dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0;
+    }
+    .protocol-row-val {
+      font-size: 13px; font-weight: 700; color: var(--gold);
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      border-radius: 100px; padding: 3px 12px; white-space: nowrap;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards { display: grid; gap: 12px; margin: 22px 0; }
+    .card {
+      background: var(--ink2); border: 1px solid var(--line2);
+      border-radius: 8px; padding: 18px 20px;
+      display: flex; gap: 14px; align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--gold-border); }
+    .card-icon { font-size: 1.4rem; min-width: 34px; text-align: center; margin-top: 1px; }
+    .card-body h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+    .card-body p { font-size: 13px; color: var(--text2); margin: 0; line-height: 1.65; }
+    .card-body p strong { color: var(--text); }
+
+    /* ── STATS ── */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 24px 0; }
+    .stat {
+      background: var(--ink2); border: 1px solid var(--gold-border);
+      border-radius: 8px; padding: 18px 14px; text-align: center;
+    }
+    .stat .val { font-size: 1.7rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 5px; }
+    .stat .lbl { font-size: 11px; color: var(--text3); font-weight: 600; }
+
+    /* ── DEFICIENCY LIST ── */
+    .def-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0; }
+    @media (max-width: 480px) { .def-list { grid-template-columns: 1fr; } }
+    .def-list li {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--ink2); border: 1px solid var(--line2);
+      border-radius: 6px; padding: 10px 14px;
+      font-size: 13px; color: var(--text2);
+    }
+    .def-list li::before { content: '⚠'; font-size: 12px; color: #e67e22; flex-shrink: 0; }
+
+    /* ── PROTOCOL LIST ── */
+    .plist { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 18px 0; }
+    .plist li {
+      display: flex; align-items: flex-start; gap: 12px;
+      color: var(--text2); font-size: 14px; line-height: 1.7;
+    }
+    .plist li::before {
+      content: '✦'; color: var(--gold); font-size: 9px; margin-top: 6px; flex-shrink: 0;
+    }
+    .plist li strong { color: var(--text); }
+
+    /* ── WARNING ── */
+    .warning {
+      background: rgba(230,126,34,0.06); border: 1px solid rgba(230,126,34,0.2);
+      border-right: 3px solid #e67e22; border-radius: 8px;
+      padding: 14px 18px; margin: 18px 0;
+      font-size: 13px; color: #e8a068; line-height: 1.6;
+    }
+
+    /* ── SCIENCE BOX ── */
+    .science-box {
+      background: var(--ink3); border: 1px solid var(--line2);
+      border-radius: 8px; padding: 20px 22px; margin: 20px 0;
+    }
+    .science-box-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text3); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .science-box-title::after { content: ''; flex: 1; height: 1px; background: var(--line2); }
+    .science-box p { font-size: 13px; color: var(--text2); line-height: 1.75; margin: 0; }
+    .science-box p + p { margin-top: 10px; }
+
+    /* ── DOSAGE VISUAL ── */
+    .dosage-visual {
+      background: var(--ink2); border: 1px solid var(--gold-border);
+      border-radius: 10px; padding: 28px 24px; margin: 24px 0; text-align: center;
+    }
+    .dosage-number {
+      font-size: clamp(3rem, 10vw, 5rem); font-weight: 900;
+      color: var(--gold); line-height: 1; margin-bottom: 4px;
+      text-shadow: 0 0 40px rgba(201,168,76,0.3);
+    }
+    .dosage-unit { font-size: 18px; color: var(--text2); margin-bottom: 8px; font-weight: 300; }
+    .dosage-note { font-size: 13px; color: var(--text3); }
+    .dosage-divider { border: none; border-top: 1px solid var(--line2); margin: 20px 0; }
+    .dosage-pair {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      font-size: 15px; color: var(--text2);
+    }
+    .dosage-pair strong { color: var(--gold); }
+    .plus-sign { color: var(--text3); font-size: 20px; }
+
+    /* ── TIMING FLOW ── */
+    .timing-flow { display: flex; flex-direction: column; gap: 0; margin: 22px 0; }
+    .timing-step {
+      display: flex; gap: 16px; position: relative;
+    }
+    .timing-step:not(:last-child)::after {
+      content: ''; position: absolute;
+      right: 19px; top: 40px; bottom: 0; width: 1px;
+      background: var(--line2);
+    }
+    .timing-dot {
+      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+      background: var(--gold-dim); border: 2px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; margin-top: 2px; position: relative; z-index: 1;
+    }
+    .timing-dot.active {
+      background: linear-gradient(135deg, var(--gold3), var(--gold));
+      border-color: var(--gold); font-size: 14px;
+    }
+    .timing-content { padding: 4px 0 28px; }
+    .timing-label { font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .timing-text { font-size: 14px; color: var(--text2); line-height: 1.65; }
+    .timing-text strong { color: var(--text); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--ink2); border: 1px solid var(--gold-border);
+      border-radius: 12px; padding: 44px 28px; text-align: center; margin-top: 56px;
+    }
+    .cta-section h2 { font-size: 1.7rem; font-weight: 900; margin-bottom: 10px; }
+    .cta-section h2 em { font-style: normal; color: var(--gold); }
+    .cta-section p { color: var(--text2); margin-bottom: 26px; font-size: 15px; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: #000; font-weight: 700; font-size: 14px;
+      padding: 13px 30px; border-radius: 100px; text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cta-btn:hover { background: var(--gold2); transform: translateY(-2px); }
+    .back-link {
+      display: inline-block; margin-top: 22px;
+      color: var(--text3); text-decoration: none; font-size: 13px; transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://achrafahmadi.com/" class="nav-brand">أشرف الأحمدي</a>
+  <a href="https://achrafahmadi.com/">→ الرجوع</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">أشرف الأحمدي · دليل فيتامين D3</div>
+    <span class="sun-icon">☀️</span>
+    <h1>فيتامين <em>D3</em><br/>السر اللي عندو الجواب<br/>على كل شي</h1>
+    <p class="hero-sub">البروتوكول الكامل — 10,000 IU يومياً مع K2 — بناءً على بحوث Dr. Eric Berg وأحدث الدراسات العلمية.</p>
+    <div class="hero-badge">☀️ بروتوكول Dr. Eric Berg</div>
+    <div class="tags">
+      <span class="tag">مناعة</span>
+      <span class="tag">هرمونات</span>
+      <span class="tag">عظام</span>
+      <span class="tag">قلب</span>
+      <span class="tag">أداء رياضي</span>
+      <span class="tag">مزاج</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- TOC -->
+<div class="toc-wrap">
+  <div class="toc-title">محتويات الدليل</div>
+  <div class="toc">
+    <a href="#whyD3"><span class="num">01</span>علاش D3 مهم هكذا؟</a>
+    <a href="#deficiency"><span class="num">02</span>علامات نقص D3</a>
+    <a href="#science"><span class="num">03</span>العلم وراه</a>
+    <a href="#protocol"><span class="num">04</span>البروتوكول الكامل — 10,000 IU</a>
+    <a href="#k2"><span class="num">05</span>D3 + K2 — علاش لازم تجمعهم</a>
+    <a href="#timing"><span class="num">06</span>التوقيت والطريقة الصحيحة</a>
+    <a href="#berg"><span class="num">07</span>Dr. Eric Berg وصية</a>
+    <a href="#results"><span class="num">08</span>شنو تستنى بعد الشهر الأول</span></a>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- SECTION 1 -->
+  <div class="section" id="whyD3">
+    <div class="chapter-label">الفصل 01</div>
+    <h2>علاش <em>D3</em> مهم هكذا؟</h2>
+    <p>فيتامين D3 مش مجرد فيتامين — هو في الحقيقة <strong>هرمون ستيرويد</strong> كيتحكم في أكثر من 2,000 جين في جسمك. كل خلية في جسمك عندها receptors لفيتامين D — القلب، المخ، العضلات، الجهاز المناعي، والهرمونات.</p>
+    <p>المشكلة؟ <strong>أكثر من مليار شخص في العالم عندهم نقص</strong> — ومعظمهم ما كيعرفوش. وحتى اللي كيعيشوا في بلدان مشمسة مثل المغرب — الأشغال داخل المكاتب، الكريمات الواقية، والتغذية السيئة كتمنع الجسم من إنتاج ما يكفيه.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="val">2000+</div><div class="lbl">جين كيتحكم فيهم D3</div></div>
+      <div class="stat"><div class="val">1B+</div><div class="lbl">شخص عندهم نقص عالمياً</div></div>
+      <div class="stat"><div class="val">70%</div><div class="lbl">من الناس ما كيوصلوش للمستوى المثالي</div></div>
+      <div class="stat"><div class="val">80%</div><div class="lbl">من المصابين بأمراض مزمنة عندهم نقص</div></div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">💡</span>
+      <div class="callout-title">حقيقة مهمة</div>
+      <p>D3 اللي كتاخدو من الشمس أو من المكملات — جسمك كيحوّلو لهرمون نشيط اسمو <strong>Calcitriol</strong>. هو اللي كيدير كل العمل داخل الجسم.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="deficiency">
+    <div class="chapter-label">الفصل 02</div>
+    <h2>علامات <em>نقص D3</em> — واش عندك؟</h2>
+    <p>معظم الناس كيعيشوا بنقص D3 بدون ما يعرفوا — لأن العلامات كتبان كشياء عادية:</p>
+
+    <ul class="def-list">
+      <li>تعب مستمر حتى بعد النوم</li>
+      <li>ألام في العظام والمفاصل</li>
+      <li>ضعف المناعة وكثرة الأمراض</li>
+      <li>اكتئاب وتقلبات في المزاج</li>
+      <li>تساقط الشعر الزائد</li>
+      <li>ضعف العضلات وبطء الاستشفاء</li>
+      <li>صعوبة في التركيز</li>
+      <li>تأخر في بناء العضل</li>
+      <li>اضطرابات النوم</li>
+      <li>ضعف مستوى التستوستيرون</li>
+    </ul>
+
+    <div class="warning">
+      ⚠️ الطريقة الوحيدة للتأكد هي تحليل الدم <strong>25-OH Vitamin D</strong>. المستوى المثالي حسب Dr. Eric Berg هو بين <strong>60–100 ng/mL</strong> — مش 30 اللي كتقولها المختبرات العادية.
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="science">
+    <div class="chapter-label">الفصل 03</div>
+    <h2>العلم <em>وراه</em></h2>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🦴</div>
+        <div class="card-body">
+          <h3>الكالسيوم والعظام</h3>
+          <p>D3 ضروري لامتصاص الكالسيوم من الطعام — بدونه، جسمك ما يمتصش حتى 10% من الكالسيوم اللي كتاكلو. مع D3 كافي — الامتصاص كيوصل لـ <strong>40%+</strong>.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💪</div>
+        <div class="card-body">
+          <h3>بناء العضل والتستوستيرون</h3>
+          <p>الدراسات كتبين أن D3 كيرفع مستوى التستوستيرون ويحسن الأداء الرياضي. كل الرياضيين بمستويات D3 مثالية <strong>كيديروا نتايج أحسن</strong>.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <div class="card-body">
+          <h3>الصحة النفسية والمزاج</h3>
+          <p>D3 كيتدخل في إنتاج السيروتونين — هرمون السعادة. نقص D3 = نقص السيروتونين = <strong>اكتئاب وقلق وتوتر مزمن</strong>.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <div class="card-body">
+          <h3>المناعة والحماية</h3>
+          <p>D3 كيفعّل أكثر من 200 جين في الجهاز المناعي — كيقلل خطر الإصابة بالأمراض الفيروسية والبكتيرية والأمراض المزمنة مثل <strong>السرطان والسكري وأمراض القلب</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <div class="science-box-title">📚 دراسات علمية</div>
+      <p>دراسة نشرت في Journal of Clinical Endocrinology كتبين أن الأشخاص بمستويات D3 فوق 60 ng/mL عندهم خطر وفاة من أمراض القلب أقل بـ 50% مقارنة بمن عندهم نقص.</p>
+      <p>دراسة أخرى في Nutrients Journal على الرياضيين كتبين أن تكميل D3 كيحسن القوة العضلية بنسبة تصل لـ 18% خلال 12 أسبوع.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="protocol">
+    <div class="chapter-label">الفصل 04</div>
+    <h2>البروتوكول الكامل —<br/><em>10,000 IU</em> في اليوم</h2>
+
+    <div class="dosage-visual">
+      <div class="dosage-number">10,000</div>
+      <div class="dosage-unit">IU فيتامين D3 يومياً</div>
+      <div class="dosage-note">البروتوكول اللي كيوصي بيه Dr. Eric Berg للوصول للمستوى المثالي</div>
+      <div class="dosage-divider"></div>
+      <div class="dosage-pair">
+        <strong>D3 10,000 IU</strong>
+        <span class="plus-sign">+</span>
+        <strong>K2 MK-7 100–200 mcg</strong>
+      </div>
+    </div>
+
+    <p>هاد الجرعة كتبان كبيرة — لكن Dr. Eric Berg كيوضح أن الجرعات الرسمية (600–800 IU) <strong>محسوبة باش تمنع نقص شديد</strong>، مش باش توصل للمستوى المثالي للصحة والأداء.</p>
+
+    <div class="callout">
+      <span class="callout-icon">⚡</span>
+      <div class="callout-title">مهم — من Dr. Eric Berg</div>
+      <p>باش 10,000 IU ما يكونش فيه toxicity — لازم يكون عندك <strong>ترطيب كافي + K2 مع كل جرعة</strong>. K2 هو اللي كيوجه الكالسيوم للعظام بدل ما يترسب في الشرايين.</p>
+    </div>
+
+    <div class="protocol-box">
+      <div class="protocol-header">
+        <div class="protocol-header-icon">☀️</div>
+        <div>
+          <div class="protocol-header-title">بروتوكول D3 اليومي</div>
+          <div class="protocol-header-sub">بعد الفطور مباشرة</div>
+        </div>
+      </div>
+      <div class="protocol-rows">
+        <div class="protocol-row">
+          <div class="protocol-row-label"><div class="dot"></div>فيتامين D3</div>
+          <div class="protocol-row-val">10,000 IU</div>
+        </div>
+        <div class="protocol-row">
+          <div class="protocol-row-label"><div class="dot"></div>فيتامين K2 MK-7</div>
+          <div class="protocol-row-val">100–200 mcg</div>
+        </div>
+        <div class="protocol-row">
+          <div class="protocol-row-label"><div class="dot"></div>التوقيت</div>
+          <div class="protocol-row-val">مع الفطور</div>
+        </div>
+        <div class="protocol-row">
+          <div class="protocol-row-label"><div class="dot"></div>مع الأكل</div>
+          <div class="protocol-row-val">دهون صحية ضرورية</div>
+        </div>
+        <div class="protocol-row">
+          <div class="protocol-row-label"><div class="dot"></div>الماء</div>
+          <div class="protocol-row-val">2–3 لتر يومياً</div>
+        </div>
+        <div class="protocol-row">
+          <div class="protocol-row-label"><div class="dot"></div>المغنيزيوم</div>
+          <div class="protocol-row-val">300–400 mg (مكمل)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="k2">
+    <div class="chapter-label">الفصل 05</div>
+    <h2>D3 + K2 —<br/>علاش <em>لازم تجمعهم</em>؟</h2>
+
+    <p>هاد التركيبة هي الأهم في الدليل — <strong>D3 بدون K2 خطر حقيقي</strong>. هاو السبب:</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🦷</div>
+        <div class="card-body">
+          <h3>K2 كيوجه الكالسيوم</h3>
+          <p>D3 كيرفع مستوى الكالسيوم في الدم — K2 (خصوصاً MK-7) كيتأكد أن هاد الكالسيوم كيمشي <strong>للعظام والأسنان</strong> بدل ما يترسب في الشرايين والكلاوي.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">❤️</div>
+        <div class="card-body">
+          <h3>حماية القلب والشرايين</h3>
+          <p>بدون K2، فيتامين D بكميات كبيرة كيمكن يسبب <strong>calcification</strong> — ترسب الكالسيوم في الشرايين. K2 كيفعّل بروتين Matrix GLA اللي كيمنع هاد الترسب.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💎</div>
+        <div class="card-body">
+          <h3>MK-7 هو الأحسن</h3>
+          <p>في K2 نوعين: MK-4 وMK-7. <strong>MK-7</strong> أطول عمراً في الجسم (نصف عمر 72 ساعة) وأفضل امتصاصاً — هو اللي كيوصي بيه Dr. Eric Berg.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="science-box">
+      <div class="science-box-title">🔬 المعادلة العلمية</div>
+      <p>D3 كيفعّل بروتين Osteocalcin في العظام وMatrix GLA Protein في الشرايين — لكن هاد البروتينات تحتاج K2 باش تشتغل. بدون K2، هاد البروتينات تبقى inactive وما تقدرش تؤدي دورها.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="timing">
+    <div class="chapter-label">الفصل 06</div>
+    <h2>التوقيت و<em>الطريقة الصحيحة</em></h2>
+
+    <div class="timing-flow">
+      <div class="timing-step">
+        <div class="timing-dot">🌅</div>
+        <div class="timing-content">
+          <div class="timing-label">الصباح — بعد الاستيقاظ</div>
+          <div class="timing-text">اشرب <strong>500ml ماء</strong> مباشرة — جسمك مات من العطش بعد النوم. هاد الخطوة تحضر جسمك لامتصاص الفيتامينات.</div>
+        </div>
+      </div>
+      <div class="timing-step">
+        <div class="timing-dot active">☀️</div>
+        <div class="timing-content">
+          <div class="timing-label">الفطور — الوقت الأمثل للجرعة</div>
+          <div class="timing-text">خد <strong>D3 10,000 IU + K2 MK-7</strong> مع الفطور. D3 كيتامين قابل للذوبان في الدهون — لازم يكون معاه دهون صحية مثل البيض، الزبدة، السمن، أو الأفوكادو باش يتمتص صح.</div>
+        </div>
+      </div>
+      <div class="timing-step">
+        <div class="timing-dot">💧</div>
+        <div class="timing-content">
+          <div class="timing-label">طول اليوم — الترطيب</div>
+          <div class="timing-text">اشرب <strong>2–3 لتر ماء</strong> مع إلكتروليتات. D3 بكميات عالية كيحتاج ترطيب جيد باش الكلاوي تشتغل صح.</div>
+        </div>
+      </div>
+      <div class="timing-step">
+        <div class="timing-dot">🌙</div>
+        <div class="timing-content">
+          <div class="timing-label">الليل — ما تاخدش D3</div>
+          <div class="timing-text">D3 في الليل كيمكن <strong>يعطل النوم</strong> عند بعض الناس — دايماً خده في الصباح مع الفطور.</div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="plist">
+      <li><strong>المغنيزيوم ضروري:</strong> D3 كيستهلك المغنيزيوم في عملية تحوله. بدون مغنيزيوم كافي، جسمك ما يقدرش يحول D3 للشكل النشيط. 300–400mg يومياً.</li>
+      <li><strong>Zinc كمكمل:</strong> كيعزز فاعلية D3 في الجهاز المناعي.</li>
+      <li><strong>أوميغا-3 مع الفطور:</strong> كيحسن امتصاص D3 ويعزز تأثيراته المضادة للالتهابات.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="berg">
+    <div class="chapter-label">الفصل 07</div>
+    <h2>Dr. Eric Berg —<br/><em>وصيتو الكاملة</em></h2>
+
+    <div class="berg-quote">
+      <div class="berg-quote-text">
+        "الجرعة الرسمية الموصى بها من فيتامين D3 منخفضة جداً — مبنية على معايير منع أمراض العظام فقط. للصحة المثالية والأداء الأمثل، أنا شخصياً آخذ 10,000 IU يومياً مع K2 MK-7. هذا البروتوكول أثبت فعاليته مع آلاف المرضى في عيادتي."
+      </div>
+      <div class="berg-quote-author">
+        <div class="berg-avatar">EB</div>
+        <div>
+          <div class="berg-name">Dr. Eric Berg</div>
+          <div class="berg-title-text">Doctor of Chiropractic — Health Educator — YouTube 12M+</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Dr. Eric Berg درس D3 لأكثر من 30 سنة وعنده أكثر من 12 مليون متابع على يوتيوب. بروتوكولو مبني على:</p>
+
+    <ul class="plist">
+      <li><strong>تحليلات دم حقيقية</strong> لآلاف المرضى — مش فقط نظريات.</li>
+      <li>المستوى المثالي هو <strong>60–100 ng/mL</strong> في الدم — مش 20–30 اللي تقوله المختبرات.</li>
+      <li>10,000 IU آمنة <strong>إذا عندك K2 كافي</strong> وما عندكش مشاكل في الكلاوي.</li>
+      <li>الشمس لوحدها ما تكفيش — خصوصاً إلا كنت كتشتغل داخل.</li>
+      <li>فحص D3 كل <strong>3–6 أشهر</strong> باش تعرف واش عندك مستوى مثالي.</li>
+    </ul>
+
+    <div class="warning">
+      ⚠️ إلا عندك مشاكل في الكلاوي، hypercalcemia، أو sarcoidosis — استشر الطبيب قبل ما تبدأ بجرعات عالية.
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section" id="results">
+    <div class="chapter-label">الفصل 08</div>
+    <h2>شنو <em>تستنى</em> بعد الشهر الأول؟</h2>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-body">
+          <h3>الأسبوع 1–2</h3>
+          <p>تحسن في الطاقة والنوم — <strong>أول شي كتحسسو</strong> هو أنك كتصحى مرتاح أكثر وعندك طاقة في الصباح.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏋️</div>
+        <div class="card-body">
+          <h3>الأسبوع 3–4</h3>
+          <p>أداء رياضي أحسن، استشفاء أسرع بعد التدريب، وتحسن في <strong>القوة العضلية</strong> وتركيز الجيم.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <div class="card-body">
+          <h3>الشهر 2–3</h3>
+          <p>تحسن واضح في المزاج، تركيز أحسن، وتراجع في الالتهابات. <strong>المناعة أقوى</strong> وأقل مرضاً.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <div class="card-body">
+          <h3>بعد 3 أشهر</h3>
+          <p>نتايج على مستوى الهرمونات — تحسن في التستوستيرون، بناء عضل أسرع، وتحسن شامل في <strong>التحمل والأداء</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-icon">🏆</span>
+      <div class="callout-title">الخلاصة</div>
+      <p>D3 + K2 = <strong>واحد من أرخص وأقوى البروتوكولات</strong> اللي تقدر تدير للصحة والأداء. مجرد كبسولة بعد الفطور كل يوم — النتايج تتكلم عليها نفسها.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>بغيتي <em>بروتوكول كامل</em> مخصص ليك؟</h2>
+    <p>احجز استشارة مع أشرف — غادي نساعدك تبني stack مكملات كامل بناءً على أهدافك وجسمك.</p>
+    <a class="cta-btn" href="https://wa.me/212764747363?text=السلام عليكم أشرف 👋 قرأت دليل D3 وبغيت نبدأ استشارة">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      احجز استشارة على واتساب
+    </a>
+    <br/>
+    <a class="back-link" href="https://achrafahmadi.com/">→ الرجوع للصفحة الرئيسية</a>
+  </div>
+
+</div>
+</body>
+</html>
