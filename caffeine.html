@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل الكافيين الكامل — أشرف الأحمدي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E2C47A;
+      --gold-dim: rgba(201,168,76,0.15);
+      --gold-border: rgba(201,168,76,0.25);
+      --bg: #0A0A0A;
+      --bg2: #111111;
+      --bg3: #181818;
+      --text: #E8E8E8;
+      --text-muted: #888;
+      --text-dim: #555;
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold); }
+    nav .site-name {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero .label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      border-radius: 100px;
+      padding: 4px 14px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
+
+    /* TAGS */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .tag {
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      border-radius: 100px;
+      font-size: 13px;
+      padding: 4px 14px;
+      font-weight: 500;
+    }
+
+    /* SCROLL CTA */
+    .scroll-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .scroll-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--gold-border);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* TOC */
+    .toc-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+    }
+    .toc {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .toc a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 15px;
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .toc a:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold-border);
+      color: var(--text);
+    }
+    .toc .num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 28px;
+      text-align: right;
+    }
+
+    /* MAIN CONTENT */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* SECTION */
+    .section {
+      margin-bottom: 72px;
+    }
+    .chapter-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    .section h2 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .section p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+    .section p strong {
+      color: var(--text);
+    }
+
+    /* CALLOUT */
+    .callout {
+      background: var(--bg3);
+      border: 1px solid var(--gold-border);
+      border-right: 3px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .callout .callout-icon {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .callout-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .callout p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .callout p strong { color: var(--text); }
+
+    /* PROTOCOL CARDS */
+    .cards {
+      display: grid;
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .card-icon {
+      font-size: 1.5rem;
+      min-width: 36px;
+      text-align: center;
+    }
+    .card-body h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .card-body p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* STATS ROW */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .stat {
+      background: var(--bg2);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .stat .val {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat .lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* PROTOCOL LIST */
+    .protocol-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .protocol-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 0.97rem;
+    }
+    .protocol-list li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 10px;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .protocol-list li strong { color: var(--text); }
+
+    /* RESULTS SECTION */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    @media (max-width: 480px) {
+      .results-grid { grid-template-columns: 1fr; }
+    }
+    .result-item {
+      background: var(--bg2);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .result-item strong { color: var(--text); display: block; margin-bottom: 4px; }
+
+    /* WARNING */
+    .warning {
+      background: rgba(255, 80, 80, 0.06);
+      border: 1px solid rgba(255, 80, 80, 0.2);
+      border-right: 3px solid #ff5050;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 0.93rem;
+      color: #ff8080;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: var(--bg2);
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      padding: 48px 32px;
+      text-align: center;
+      margin-top: 64px;
+    }
+    .cta-section h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .cta-section h2 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cta-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://achrafahmadi.com/" class="site-name">أشرف الأحمدي</a>
+    <a href="https://achrafahmadi.com/">→ الرجوع</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="label">أشرف الأحمدي · دليل الكافيين</span>
+    <h1>السر الذي لا يشاركه<br/>أحد: <em>الكافيين</em> بشكل صحيح</h1>
+    <p>البروتوكول الكامل الذي يستخدمه كبار الرياضيين والمدربين — من الترطيب إلى التوقيت والجرعات.</p>
+    <div class="tags">
+      <span class="tag">طاقة</span>
+      <span class="tag">أداء</span>
+      <span class="tag">ترطيب</span>
+      <span class="tag">كمال الأجسام</span>
+    </div>
+    <a href="#content" class="scroll-cta">ابدأ القراءة</a>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- TOC -->
+  <div class="toc-wrap">
+    <div class="toc-title">محتويات الدليل</div>
+    <div class="toc">
+      <a href="#history"><span class="num">01</span>تاريخ الكافيين</a>
+      <a href="#mystory"><span class="num">02</span>قصتي مع التوقف عن الكافيين</a>
+      <a href="#howto"><span class="num">03</span>كيفاش تخلي الكافيين يخدم ليك</a>
+      <a href="#hydration"><span class="num">04</span>بروتوكول الترطيب الخاص بي</a>
+      <a href="#why"><span class="num">05</span>علاش هاد البروتوكول؟</a>
+      <a href="#results"><span class="num">06</span>النتايج الحقيقية</a>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- CONTENT -->
+  <div class="content" id="content">
+
+    <!-- DISCLAIMER -->
+    <div class="callout" style="margin-top: 48px;">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-title">تنبيه مهم</div>
+      <p>غادي نشارك معك أسرار تكمل بعضها البعض. <strong>ما تخرجش من هاد الدليل حتى تقراه كامل</strong> — إلا ما كملتيش، ما غادي تجيك الفوائد اللي كنتكلم عليها.</p>
+    </div>
+
+    <!-- SECTION 1: HISTORY -->
+    <div class="section" id="history">
+      <div class="chapter-label">الفصل 01</div>
+      <h2>تاريخ <em>الكافيين</em></h2>
+      <p>الكافيين مش مجرد مادة كيمياوية — هو واحد من أكثر المواد استهلاكاً في تاريخ البشرية. من حضارات اليمن والحبشة اللي كانت كتشرب القهوة منذ أكثر من ألف سنة، إلى إمبراطوريات الشاي في آسيا — الكافيين كان دايماً في قلب الحضارة.</p>
+      <p>الحضارات الكبرى اللي بنات العالم — المسلمون في عصرهم الذهبي، التجار الأوروبيون، المبدعون والفلاسفة — كلهم كانوا يشربوا القهوة والشاي كروتين يومي. <strong>الكافيين مش موضة — هو وقود الحضارة.</strong></p>
+      <p>فولتير كان كيشرب 50 فنجان في اليوم. ناپوليون، بتهوفن، بالزاك — الكافيين كان روتينهم اليومي قبل ما يغزوا العالم بأفكارهم وإنجازاتهم. المشكلة مش الكافيين — المشكلة هي كيفاش كتستعملو.</p>
+    </div>
+
+    <!-- SECTION 2: MY STORY -->
+    <div class="section" id="mystory">
+      <div class="chapter-label">الفصل 02</div>
+      <h2>قصتي مع <em>التوقف</em> عن الكافيين</h2>
+      <p>فترة من الوقت قررت نوقف الكافيين كلياً — كنت مقتنع أنه ضار وما كاينش فائدة منه. النتيجة؟</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">😞</div>
+          <div class="card-body">
+            <h3>تعب مستمر</h3>
+            <p>طاقة في الحضيض — الصباح كان مؤلم وما كنقدرش نركز على أي شي.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏋️</div>
+          <div class="card-body">
+            <h3>تراجع واضح في الجيم</h3>
+            <p>أداء رياضي ضعيف — الأوزان اللي كنرفعها تراجعات وما كنقدرش نحافظ على الإنتنسيتي.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧠</div>
+          <div class="card-body">
+            <h3>Brain Fog حقيقي</h3>
+            <p>تركيز صفر، قرارات بطيئة، إنتاجية في الحضيض في كل المجالات.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>كنت مقتنع أن الكافيين هو العدو. الحقيقة؟ المشكلة ما كانتش الكافيين — المشكلة كانت أنني ما كنتش كنستعملو صح.</p>
+
+      <div class="callout">
+        <span class="callout-icon">💡</span>
+        <div class="callout-title">السر الحقيقي</div>
+        <p>غادي نشارك معك واحد من <strong>أهم البروتوكولات</strong> اللي كيستعملها كبار الرياضيين والرياضيين المحترفين باش يجيوا بنتايج أسرع.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 3: HOW TO -->
+    <div class="section" id="howto">
+      <div class="chapter-label">الفصل 03</div>
+      <h2>كيفاش تخلي الكافيين <em>يخدم ليك</em></h2>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🧈</div>
+          <div class="card-body">
+            <h3>الزبدة والسمن مع الكافيين</h3>
+            <p>هاد التركيبة كتبطء امتصاص الكافيين وكتعطيك طاقة مستقرة بدون crash مفاجئ. الدهون الصحية كتزيد bioavailability ديال الكافيين وكتمد مدة تأثيره.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔄</div>
+          <div class="card-body">
+            <h3>ما تستعملوش بشكل عادي</h3>
+            <p>الاستخدام اليومي المستمر كيبني tolerance سريع — جسمك كيتعود ويصبح ما كيحسش بتأثيره. استعمل استراتيجية cycling باش تحافظ على حساسية الكافيين.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <div class="card-body">
+            <h3>الكميات الصحيحة</h3>
+            <p>الجرعة الفعالة هي بين <strong>100mg كحد أدنى و400mg</strong>. الناس العاديين كياخدوا جرعات صغيرة ما كتوصلش حتى للتأثير الكامل.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">💧</div>
+          <div class="card-body">
+            <h3>الترطيب أساسي</h3>
+            <p>الكافيين مدر للبول — إلا ما شرتيش ماء وإلكتروليتات كافية، غادي تخسر أكثر مما كسبت. <strong>الترطيب هو الفارق بين الكافيين المفيد والضار.</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="val">100mg</div>
+          <div class="lbl">الحد الأدنى الفعال</div>
+        </div>
+        <div class="stat">
+          <div class="val">400mg</div>
+          <div class="lbl">الحد الأقصى الموصى</div>
+        </div>
+        <div class="stat">
+          <div class="val">6h</div>
+          <div class="lbl">نصف عمر الكافيين</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: HYDRATION PROTOCOL -->
+    <div class="section" id="hydration">
+      <div class="chapter-label">الفصل 04</div>
+      <h2>بروتوكول <em>الترطيب</em> الخاص بي</h2>
+
+      <p>هاد البروتوكول هو السبب اللي خلى أصحابي وكل الناس اللي شافوني بعد 3 أشهر يصدموا من التغيير. ما كانش فقط التدريب — كان <strong>الترطيب الصحيح مع الكافيين.</strong></p>
+
+      <ul class="protocol-list">
+        <li><strong>ملح اليود + الملح الهيمالايا:</strong> ملعقة صغيرة على كل لتر ماء — كتعوض الإلكتروليتات اللي كيأخدها الكافيين. تجنب في الليل.</li>
+        <li><strong>أول شي الصباح:</strong> مباشرة بعد الاستيقاظ مع أول رشفات ماء، حاول تشرب لتر كامل.</li>
+        <li><strong>إلا كنت في منطقة استوائية</strong> (بالي، تايلاند، فيتنام) — تأكد تشرب جوز الهند يومياً للترطيب والمعادن.</li>
+        <li><strong>إلا ما كانش جوز الهند متاح:</strong> ماء جوز الهند بين الحين والآخر — للترطيب والمعادن الطبيعية.</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-icon">🌊</span>
+        <div class="callout-title">المعادلة البسيطة</div>
+        <p><strong>الكافيين = طاقة + جفاف محتمل.</strong> إلا زدت الإلكتروليتات والماء، كتحول الجفاف لطاقة نقية بدون آثار جانبية.</p>
+      </div>
+
+      <div class="warning">
+        ⚠️ تجنب الملح في المساء — كيتداخل مع النوم ويسبب احتباس الماء في اللحظة الغلطاء.
+      </div>
+    </div>
+
+    <!-- SECTION 5: WHY -->
+    <div class="section" id="why">
+      <div class="chapter-label">الفصل 05</div>
+      <h2>علاش <em>هاد البروتوكول؟</em></h2>
+
+      <p>الفرق بين شخص كيستفيد من الكافيين وآخر كيتضرر منه هو واحد فقط: <strong>المعلومة.</strong></p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">✅</div>
+          <div class="card-body">
+            <h3>الشخص اللي كيفهم</h3>
+            <p>كيشرب الكافيين مع إلكتروليتات، كيحافظ على جسم مرطب، كيستفيد من 100% من تأثير الكافيين بدون crash.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">❌</div>
+          <div class="card-body">
+            <h3>الشخص "العادي"</h3>
+            <p>يشرب 5 قهاوي في اليوم، ملح صفر، 700ml ماء فقط — كيعتقد الكافيين ضار وما كيستفيدش من تأثيره الكامل.</p>
+          </div>
+        </div>
+      </div>
+
+      <ul class="protocol-list" style="margin-top: 24px;">
+        <li>الكافيين <strong>معجزة حقيقية</strong> إلا استعملتيه صح — كيعطيك نتايج سريعة في الجيم وفي العمل.</li>
+        <li>كل الناس اللي كيعرفهم ويديروا نتايج كبيرة في الفيتنس والبيزنس — <strong>كافيين هو non-negotiable عندهم.</strong></li>
+        <li>دايماً يكونوا في mood إيجابي وبطاقة عالية — هاد الشي ما كاينش بالصدفة.</li>
+        <li>المعرفة هي اللي تفرق — مش المادة نفسها.</li>
+      </ul>
+    </div>
+
+    <!-- SECTION 6: RESULTS -->
+    <div class="section" id="results">
+      <div class="chapter-label">الفصل 06</div>
+      <h2>النتايج <em>الحقيقية</em></h2>
+
+      <p>هاد البروتوكول ساعدني نكسب <strong>5 كيلو عضل في 3 أشهر</strong>. كل صاحب أو شخص شافني بعد تلك الفترة كان صادم من الفرق.</p>
+
+      <div class="results-grid">
+        <div class="result-item">
+          <strong>+5kg عضل</strong>
+          في 3 أشهر فقط مع البروتوكول الكامل
+        </div>
+        <div class="result-item">
+          <strong>طاقة مستمرة</strong>
+          طول اليوم بدون crash أو تعب مفاجئ
+        </div>
+        <div class="result-item">
+          <strong>أداء رياضي أعلى</strong>
+          قوة وتحمل محسنين بشكل واضح
+        </div>
+        <div class="result-item">
+          <strong>تركيز أفضل</strong>
+          في الجيم وفي العمل والإنتاجية اليومية
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top: 32px;">
+        <span class="callout-icon">🏆</span>
+        <div class="callout-title">الخلاصة</div>
+        <p>باش توصل لنتايج سريعة — هاد هو اللي خاصك تدير. هاد هو اللي يديرو رواد الأعمال والأتلاتيين للوصول لأهدافهم بسرعة. <strong>المعلومة + التطبيق = النتيجة.</strong></p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>واجد تبدأ؟ <em>نساعدك</em></h2>
+      <p>احجز استشارة مع أشرف — غادي يساعدك تطبق هاد البروتوكولات على أهدافك الخاصة.</p>
+      <a class="cta-btn" href="https://wa.me/212764747363?text=السلام عليكم أشرف 👋 قرأت دليل الكافيين وبغيت نبدأ استشارة">
+        احجز استشارة على واتساب
+      </a>
+      <br/>
+      <a class="back-link" href="https://achrafahmadi.com/">→ الرجوع للصفحة الرئيسية</a>
+    </div>
+
+  </div><!-- /content -->
+
+</body>
+</html>
