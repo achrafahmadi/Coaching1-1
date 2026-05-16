@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل الأداء الرياضي للمبتدئين — أشرف الأحمدي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #C9A84C; --gold-light: #E2C47A;
+      --gold-dim: rgba(201,168,76,0.12); --gold-border: rgba(201,168,76,0.25);
+      --bg: #0A0A0A; --bg2: #111111; --bg3: #181818;
+      --text: #E8E8E8; --text-muted: #888; --text-dim: #555;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; font-size: 16px; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--gold-border); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    nav a:hover { color: var(--gold); }
+    .site-name { font-weight: 700; color: var(--text); font-size: 15px; }
+
+    .hero { text-align: center; padding: 80px 24px 60px; max-width: 720px; margin: 0 auto; }
+    .badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); background: var(--gold-dim); padding: 6px 18px; border-radius: 100px; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(34px, 7vw, 58px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero p { font-size: 16px; color: var(--text-muted); max-width: 500px; margin: 0 auto 32px; line-height: 1.7; }
+    .tag-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .tag { font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 100px; background: var(--bg3); border: 1px solid rgba(255,255,255,0.07); color: var(--text-muted); }
+    .scroll-btn { display: inline-block; font-size: 14px; font-weight: 600; color: var(--bg); background: var(--gold); padding: 12px 32px; border-radius: 100px; text-decoration: none; }
+    .scroll-btn:hover { background: var(--gold-light); }
+
+    .toc-wrap { max-width: 720px; margin: 0 auto 56px; padding: 0 24px; }
+    .toc-title { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+    .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+    .toc-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: var(--bg2); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; text-decoration: none; color: var(--text-muted); font-size: 13px; transition: border-color 0.2s, color 0.2s; }
+    .toc-item:hover { border-color: var(--gold-border); color: var(--gold); }
+    .toc-num { font-size: 11px; font-weight: 700; color: var(--gold); min-width: 22px; }
+
+    .content { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+    .chapter { margin-bottom: 64px; }
+    .chapter-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .chapter h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .chapter h2 em { font-style: normal; color: var(--gold); }
+    .chapter p { font-size: 15px; color: #aaa; margin-bottom: 14px; line-height: 1.75; }
+    .chapter p strong { color: var(--text); font-weight: 600; }
+
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold-border), transparent); margin: 48px 0; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 24px 0; }
+    .stat-box { background: var(--bg2); border: 1px solid var(--gold-border); border-radius: 12px; padding: 20px 16px; text-align: center; }
+    .stat-val { font-size: 30px; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+    .callout { background: var(--bg2); border-right: 3px solid var(--gold); border-radius: 12px; padding: 18px 20px; margin: 20px 0; display: flex; gap: 12px; align-items: flex-start; }
+    .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .callout-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .callout-text { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0; }
+    .callout-text strong { color: var(--text); }
+
+    .timing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+    .timing-card { background: var(--bg2); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 18px 16px; }
+    .timing-card.pre { border-top: 2px solid var(--gold); }
+    .timing-card.post { border-top: 2px solid #4ecfa4; }
+    .timing-head { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+    .timing-head.pre { color: var(--gold); }
+    .timing-head.post { color: #4ecfa4; }
+    .timing-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+    .timing-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .timing-dot.pre { background: var(--gold); }
+    .timing-dot.post { background: #4ecfa4; }
+
+    .food-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0 18px; }
+    .food-label { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+    .food-tag { font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: 100px; }
+    .food-tag.lean { background: rgba(29,158,117,0.1); color: #4ecfa4; border: 1px solid rgba(29,158,117,0.2); }
+    .food-tag.mod { background: rgba(201,168,76,0.1); color: var(--gold); border: 1px solid var(--gold-border); }
+
+    .meal-plan { margin: 20px 0; }
+    .meal-row { display: grid; grid-template-columns: 130px 1fr auto; gap: 12px; align-items: center; padding: 12px 16px; background: var(--bg2); border-radius: 10px; margin-bottom: 6px; border: 1px solid rgba(255,255,255,0.04); }
+    .meal-time { font-size: 13px; font-weight: 600; color: var(--gold); }
+    .meal-desc { font-size: 13px; color: var(--text-muted); }
+    .meal-macro { font-size: 12px; font-weight: 600; color: var(--text-dim); white-space: nowrap; }
+
+    .cta-box { background: var(--bg2); border: 1px solid var(--gold-border); border-radius: 14px; padding: 24px 20px; text-align: center; margin-top: 28px; }
+    .cta-box .sub { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+    .cta-box .title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 18px; }
+    .cta-gold { display: inline-block; font-size: 14px; font-weight: 600; color: #0A0A0A; background: var(--gold); padding: 12px 30px; border-radius: 100px; text-decoration: none; }
+    .cta-gold:hover { background: var(--gold-light); }
+
+    .final-cta { text-align: center; background: var(--bg2); border: 1px solid var(--gold-border); border-radius: 18px; padding: 44px 28px; margin-top: 56px; }
+    .final-cta h3 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+    .final-cta p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .btn-outline { display: inline-block; font-size: 14px; font-weight: 500; color: var(--text-muted); padding: 12px 28px; border-radius: 100px; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); margin: 4px; }
+    .btn-outline:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+
+    footer { text-align: center; padding: 28px 24px; font-size: 13px; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    @media (max-width: 580px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .timing-grid { grid-template-columns: 1fr; }
+      .meal-row { grid-template-columns: 1fr; gap: 2px; }
+      .meal-macro { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="https://achrafahmadi.com/" class="site-name">أشرف الأحمدي</a>
+  <a href="https://achrafahmadi.com/">→ الرجوع</a>
+</nav>
+
+<div class="hero">
+  <div class="badge">أشرف الأحمدي · دليل أداء رياضي</div>
+  <h1>دليل <em>الأداء الرياضي</em><br>للمبتدئين</h1>
+  <p>تغذية مبسطة ومباشرة — باش تتمرن بقوة وتبني عضل أسرع.</p>
+  <div class="tag-row">
+    <span class="tag">كارب</span>
+    <span class="tag">بروتين</span>
+    <span class="tag">توقيت</span>
+    <span class="tag">لحوم</span>
+  </div>
+
+  <div style="width: 100%; max-width: 400px; margin: 0 auto 28px; border-radius: 14px; overflow: hidden; border: 1px solid var(--gold-border); position: relative; height: 300px;">
+    <iframe src="https://www.youtube.com/embed/gJWHjESEhyY" frameborder="0" allowfullscreen style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:170%; height:170%; display:block; pointer-events:auto;"></iframe>
+  </div>
+  <a href="#why" class="scroll-btn">ابدأ القراءة</a>
+</div>
+
+<div class="toc-wrap">
+  <div class="toc-title">محتويات الدليل</div>
+  <div class="toc-grid">
+    <a href="#why" class="toc-item"><span class="toc-num">00</span>علاش هاد التغذية؟</a>
+    <a href="#carbs" class="toc-item"><span class="toc-num">01</span>الكارب — وقود الرياضي</a>
+    <a href="#protein" class="toc-item"><span class="toc-num">02</span>البروتين — الأساس</a>
+    <a href="#timing" class="toc-item"><span class="toc-num">03</span>الدهون والتوقيت</a>
+    <a href="#meats" class="toc-item"><span class="toc-num">04</span>أحسن اللحوم</a>
+    <a href="#mealplan" class="toc-item"><span class="toc-num">05</span>برنامج أكل نموذجي</a>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- WHY -->
+  <div class="chapter" id="why">
+    <div class="chapter-label">المقدمة</div>
+    <h2>علاش <em>هاد التغذية</em>؟</h2>
+    <p>الهدف واحد: <strong>أقصى أداء + بناء عضل أسرع.</strong> معظم المبتدئين كيتمرنوا بجد لكن تغذيتهم غلطاء — كثير دهون، قليل كارب، بروتين ناقص. النتيجة: تعب سريع وما شي نتائج.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 24px 0;">
+      <div style="background: var(--bg2); border-top: 2px solid var(--gold); border-radius: 12px; padding: 18px 16px;">
+        <div style="font-size: 22px; margin-bottom: 8px;">⚡</div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px;">أداء أقصى</div>
+        <div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">الكارب كيعبي glycogen العضلات — قوة أكثر وتحمل أطول.</div>
+      </div>
+      <div style="background: var(--bg2); border-top: 2px solid #4ecfa4; border-radius: 12px; padding: 18px 16px;">
+        <div style="font-size: 22px; margin-bottom: 8px;">💪</div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px;">بناء عضل أسرع</div>
+        <div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">بروتين كافي + كارب = بيئة anabolic مثالية للنمو.</div>
+      </div>
+      <div style="background: var(--bg2); border-top: 2px solid #7B8FE8; border-radius: 12px; padding: 18px 16px;">
+        <div style="font-size: 22px; margin-bottom: 8px;">🔄</div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px;">تعافي أسرع</div>
+        <div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">الكارب بعد التمرين كيملأ glycogen المفرغ — تجي جاهز للجلسة التالية.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">🎯</div>
+      <div>
+        <div class="callout-title">المبدأ الأساسي</div>
+        <p class="callout-text">التمرين هو الإشارة — التغذية هي الاستجابة. <strong>تمرين 10/10 + تغذية 5/10 = نتائج 5/10.</strong> هاد الدليل كيصلح التغذية.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CARBS -->
+  <div class="chapter" id="carbs">
+    <div class="chapter-label">الفصل 01</div>
+    <h2>الكارب — <em>وقود</em> الرياضي</h2>
+    <p>الكارب مش عدو — هو الوقود. بدونو جسمك ما عندوش الطاقة باش يتمرن ويبني عضل.</p>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-val">300g</div>
+        <div class="stat-label">60–70kg</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">450g</div>
+        <div class="stat-label">75–85kg</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">600g</div>
+        <div class="stat-label">90kg+</div>
+      </div>
+    </div>
+
+    <p>أحسن مصادر: <strong>أرز، بطاطا، شوفان، خبز كامل، فواكه، مكرونة.</strong></p>
+
+    <div class="cta-box">
+      <p class="sub">مش عارف شحال كارب خاصك بالضبط؟</p>
+      <p class="title">أشرف غادي يحسبها ليك حسب وزنك وأهدافك</p>
+      <a href="https://wa.me/212764747363?text=السلام عليكم أشرف 👋 شفت دليل الأداء الرياضي وبغيت نعرف شحال كارب خاصني ناكل" class="cta-gold">🥗 استشر أشرف على واتساب</a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROTEIN -->
+  <div class="chapter" id="protein">
+    <div class="chapter-label">الفصل 02</div>
+    <h2>البروتين — <em>الأساس</em></h2>
+    <p><strong>القاعدة: 1g بروتين لكل رطل من وزنك.</strong> يعني وزنك بالكيلو × 2.2 = البروتين اليومي بالغرام.</p>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div>
+        <div class="callout-title">مثال سريع</div>
+        <p class="callout-text">80kg × 2.2 = <strong>176g بروتين في اليوم.</strong> قسمها على 4–5 وجبات = 35–44g للوجبة.</p>
+      </div>
+    </div>
+
+    <p>اضمن البروتين كل يوم بدون استثناء — هاد هي الأولوية الأولى.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FAT + TIMING -->
+  <div class="chapter" id="timing">
+    <div class="chapter-label">الفصل 03</div>
+    <h2>الدهون والتوقيت — <em>مهمين معاً</em></h2>
+    <p><strong>الدهون منخفضة</strong> خصوصاً حول التمرين — كيبطأوا الهضم ويثقلوا جسمك. <strong>الكارب ركزهم قبل وبعد التمرين.</strong></p>
+
+    <div class="timing-grid">
+      <div class="timing-card pre">
+        <div class="timing-head pre">قبل التمرين</div>
+        <div class="timing-item"><span class="timing-dot pre"></span>أرز أو شوفان (1–2 ساعة)</div>
+        <div class="timing-item"><span class="timing-dot pre"></span>فاكهة أو خبز (30–45 دقيقة)</div>
+        <div class="timing-item"><span class="timing-dot pre"></span>بروتين خفيف + دهون أقل ما يمكن</div>
+      </div>
+      <div class="timing-card post">
+        <div class="timing-head post">بعد التمرين</div>
+        <div class="timing-item"><span class="timing-dot post"></span>أرز أو بطاطا أو فاكهة</div>
+        <div class="timing-item"><span class="timing-dot post"></span>بروتين وافر (150–200g لحم)</div>
+        <div class="timing-item"><span class="timing-dot post"></span>دهون أقل ما يمكن</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MEATS -->
+  <div class="chapter" id="meats">
+    <div class="chapter-label">الفصل 04</div>
+    <h2>أحسن <em>اللحوم</em> للرياضي</h2>
+    <p>اختار اللحوم الخفيفة — بروتين أعلى ودهون أقل = أقصى استفادة من كل سعرة.</p>
+
+    <div class="food-label">✅ الأولوية — لحوم خفيفة</div>
+    <div class="food-tags">
+      <span class="food-tag lean">صدر الدجاج</span>
+      <span class="food-tag lean">صدر الديك الرومي</span>
+      <span class="food-tag lean">تونة في الماء</span>
+      <span class="food-tag lean">بياض البيض</span>
+      <span class="food-tag lean">لحم بقري خفيف 5%</span>
+      <span class="food-tag lean">سمك أبيض</span>
+      <span class="food-tag lean">الجمبري</span>
+    </div>
+
+    <div class="food-label">⚡ مقبول — بمعتدل</div>
+    <div class="food-tags">
+      <span class="food-tag mod">سلمون (2–3× أسبوع)</span>
+      <span class="food-tag mod">بيض كامل (2–4 حبات)</span>
+      <span class="food-tag mod">لحم بقري 15–20%</span>
+      <span class="food-tag mod">سردين</span>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">🥩</div>
+      <div>
+        <div class="callout-title">الفرق الحقيقي</div>
+        <p class="callout-text">صدر دجاج 200g = <strong>62g بروتين، 6g دهون.</strong> لحم 20% دهون 200g = 40g بروتين، 40g دهون. اختار الخفيف وزيد الكارب.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MEAL PLAN -->
+  <div class="chapter" id="mealplan">
+    <div class="chapter-label">الفصل 05</div>
+    <h2>برنامج أكل <em>نموذجي</em></h2>
+    <p>مثال لرياضي 75kg يتمرن الصباح:</p>
+
+    <div class="meal-plan">
+      <div class="meal-row">
+        <div class="meal-time">الفطور 7:00</div>
+        <div class="meal-desc">شوفان 80g + بياض بيض 5 + فاكهة</div>
+        <div class="meal-macro">60g C · 25g P</div>
+      </div>
+      <div class="meal-row" style="border-color: var(--gold-border);">
+        <div class="meal-time" style="color: var(--gold-light);">قبل التمرين 9:00</div>
+        <div class="meal-desc">أرز 100g + صدر دجاج 150g</div>
+        <div class="meal-macro" style="color: var(--gold);">80g C · 47g P</div>
+      </div>
+      <div class="meal-row" style="border-color: rgba(78,207,164,0.3);">
+        <div class="meal-time" style="color: #4ecfa4;">بعد التمرين 12:00</div>
+        <div class="meal-desc">أرز 120g + لحم بقري 180g + فاكهة</div>
+        <div class="meal-macro" style="color: #4ecfa4;">100g C · 55g P</div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">الغداء 15:00</div>
+        <div class="meal-desc">بطاطا 200g + صدر دجاج 200g</div>
+        <div class="meal-macro">40g C · 62g P</div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">العشاء 19:00</div>
+        <div class="meal-desc">مكرونة 80g + تونة 2 علبة</div>
+        <div class="meal-macro">60g C · 50g P</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">📊</div>
+      <div>
+        <div class="callout-title">إجمالي اليوم (75kg)</div>
+        <p class="callout-text"><strong>كارب ~340g · بروتين ~240g · دهون منخفضة.</strong> عدل الكميات حسب وزنك.</p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <p class="sub">هاد البرنامج مثال عام — وزنك وأهدافك مختلفين</p>
+      <p class="title">بغيتي برنامج أكل مخصص ليك؟</p>
+      <a href="https://wa.me/212764747363?text=السلام عليكم أشرف 👋 شفت دليل الأداء الرياضي وبغيت برنامج أكل مخصص ليا" class="cta-gold">🥗 استشر أشرف على واتساب</a>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="final-cta">
+    <h3>واجد تبدأ؟</h3>
+    <p>احجز استشارة مع أشرف — غادي يبني ليك خطة مخصصة حسب وزنك وأهدافك.</p>
+    <a href="https://wa.me/212764747363?text=السلام عليكم أشرف 👋 قرأت دليل الأداء الرياضي وبغيت نبدأ استشارة" class="cta-gold" style="margin: 0 6px 8px; display: inline-block;">احجز استشارة على واتساب</a>
+    <a href="https://achrafahmadi.com/" class="btn-outline">→ الرجوع للصفحة الرئيسية</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 أشرف الأحمدي — <a href="https://achrafahmadi.com/">achrafahmadi.com</a></p>
+</footer>
+
+</body>
+</html>
