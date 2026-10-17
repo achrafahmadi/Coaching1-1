@@ -1,0 +1,124 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Achraf Ahmadi Coaching</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* Layout: one headline, two equal path cards side by side (stacked on phones), brand colors from achrafahmadi.com */
+:root{
+  --ink:#141414; --panel:#1c1c1c; --line:#2b2b2b;
+  --text:#f0f0f0; --muted:#b8b8b8; --gold:#C9A84C; --gold-hi:#e2c06a; --gold-ink:#141414;
+  --wa:#25D366;
+  --display:'Cairo','Segoe UI',Tahoma,sans-serif; --body:'Cairo','Segoe UI',Tahoma,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--text);font:400 17px/1.7 var(--body);padding-inline:0;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-block:20px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.brand{font:900 20px var(--display);color:var(--gold);flex:1;min-width:0}
+.lang{display:flex;gap:6px}
+.lang button{font:600 14px var(--body);background:transparent;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:5px 14px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--gold);color:var(--gold-ink);border-color:var(--gold)}
+.hero{padding-block:44px 28px;max-width:720px}
+.eyebrow{color:var(--gold);font-weight:700;letter-spacing:.06em;margin-bottom:8px}
+h1{font:900 clamp(34px,6vw,56px)/1.2 var(--display);margin:0 0 12px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--gold)}
+.lead{color:var(--muted);margin:0;max-width:60ch}
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px;margin-top:20px}
+.card{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px}
+.card.main{border-color:var(--gold)}
+.tag{color:var(--gold);font-weight:700;font-size:14px;letter-spacing:.05em}
+.card h2{font:900 30px/1.25 var(--display);margin:0}
+.card p{margin:0;color:var(--muted)}
+.card ul{margin:4px 0 8px;padding-inline-start:20px;display:grid;gap:6px}
+.price{font:700 18px var(--body);color:var(--text);margin-top:auto;padding-top:8px}
+.price small{color:var(--muted);font-weight:400;font-size:14px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;text-align:center;text-decoration:none;font:700 17px var(--body);padding:13px 22px;border-radius:10px;background:var(--gold);color:var(--gold-ink)}
+.btn:hover{background:var(--gold-hi)}
+.btn.wa{background:var(--wa);color:#0b1f12}
+.btn:focus-visible,.lang button:focus-visible{outline:3px solid var(--gold-hi);outline-offset:2px}
+.btn.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.7}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="brand" data-i="brand"></span>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-l="ar" aria-pressed="true">العربية</button>
+      <button type="button" data-l="en" aria-pressed="false">English</button>
+      <button type="button" data-l="fr" aria-pressed="false">Français</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow" data-i="eyebrow"></div>
+    <h1 data-ih="h1"></h1>
+    <p class="lead" data-i="lead"></p>
+  </section>
+
+  <section class="paths">
+    <article class="card">
+      <span class="tag" data-i="v_tag"></span>
+      <h2 data-i="v_h"></h2>
+      <p data-i="v_p"></p>
+      <ul><li data-i="v1"></li><li data-i="v2"></li><li data-i="v3"></li></ul>
+      <div class="price"><span data-i="v_price"></span> <small data-i="v_trial"></small></div>
+      <div class="btns"><a class="btn" id="skool" href="https://www.skool.com/testosterone-strategy-6585/about" target="_blank" rel="noopener" data-i="v_btn"></a></div>
+    </article>
+
+    <article class="card main">
+      <span class="tag" data-i="c_tag"></span>
+      <h2 data-i="c_h"></h2>
+      <p data-i="c_p"></p>
+      <ul><li data-i="c1"></li><li data-i="c2"></li><li data-i="c3"></li></ul>
+      <div class="price"><span data-i="c_price"></span></div>
+      <div class="btns">
+        <a class="btn" id="coach" href="https://achrafahmadi.com/trtprotocol" target="_blank" rel="noopener" data-i="c_btn"></a>
+        <a class="btn wa" id="wa" href="#" target="_blank" rel="noopener" data-i="c_wa"></a>
+      </div>
+    </article>
+  </section>
+
+  <footer data-i="disc"></footer>
+</div>
+
+<script>
+var NUM="212764747363";
+var T={
+ar:{code:"ar-MA",dir:"rtl",title:"أشرف الأحمدي · استشارات",brand:"أشرف الأحمدي · استشارات",
+eyebrow:"اختار الطريق ديالك",h1:"كيفاش بغيتي <em>تبدا</em>؟",lead:"عندك جوج خيارات. فيديوهات الكورس باش تتعلم بوحدك، ولا كوتشينغ مباشر معايا.",
+v_tag:"الخيار 1",v_h:"برنامج فيديوهات الكورس",v_p:"مجتمع Skool فيه فيديوهات تعليمية على TRT، باش تفهم وتتعلم بالوقت ديالك.",v1:"فيديوهات كورس تعليمية على TRT",v2:"تتعلم بالسرعة ديالك فأي وقت",v3:"مجتمع فيه ناس كيتعلمو بحالك",v_price:"19$ فالشهر",v_trial:"· كاين تجربة مجانية",v_btn:"دخل لـ Skool",
+c_tag:"الخيار 2",c_h:"Moutaba3a ma3a Achraf 1-1",c_p:"خطة مخصصة ليك ومتابعة مباشرة معايا، باش توصل للهدف ديالك.",c1:"برنامج تغذية مخصص ومطوّر",c2:"فيديوهات بروتوكول TRT + بونيس (مكملات)",c3:"متابعة 1-1 ودعم على واتساب",c_price:"من 1500 درهم",c_btn:"شوف برامج الكوتشينغ",c_wa:"تواصل على واتساب",
+wa:"السلام عليكم أشرف 👋 بغيت نعرف أكثر على الكوتشينغ",
+disc:"هاد المحتوى للتوعية والمعلومات العامة فقط، وماشي نصيحة طبية. أي TRT هو قرار طبي كيتاخد ويتتبع مع طبيب مرخص. أشرف الأحمدي · استشارات ما كيوصفش الأدوية. النتائج كتختلف وماشي مضمونة."},
+en:{code:"en",dir:"ltr",title:"Achraf Ahmadi Coaching",brand:"Achraf Ahmadi · Coaching",
+eyebrow:"Choose your path",h1:"How do you want to <em>start</em>?",lead:"You have two options. Course videos to learn on your own, or coaching directly with me.",
+v_tag:"Option 1",v_h:"Course Videos Programme",v_p:"A Skool community with educational video courses about TRT, so you learn and understand at your own pace.",v1:"Educational video courses about TRT",v2:"Learn at your own speed, any time",v3:"A community of people learning like you",v_price:"$19 per month",v_trial:"· free trial available",v_btn:"Join on Skool",
+c_tag:"Option 2",c_h:"Moutaba3a ma3a Achraf 1-1",c_p:"A plan built for you and direct follow-up with me, to get you to your goal.",c1:"Enhanced personalised diet plan",c2:"TRT protocol videos + bonus (supplements)",c3:"1-on-1 follow-up and WhatsApp support",c_price:"From 1500 Dhs",c_btn:"See coaching plans",c_wa:"Chat on WhatsApp",
+wa:"Hi Achraf 👋 I'd like to know more about coaching",
+disc:"This content is for educational and general information only and is not medical advice. Any TRT is a medical decision that must be made and supervised by a licensed physician. Achraf Ahmadi Coaching does not prescribe medication. Results vary and are not guaranteed."},
+fr:{code:"fr",dir:"ltr",title:"Achraf Ahmadi Coaching",brand:"Achraf Ahmadi · Coaching",
+eyebrow:"Choisis ton chemin",h1:"Comment veux-tu <em>commencer</em> ?",lead:"Tu as deux options. Des vidéos de cours pour apprendre seul, ou un coaching direct avec moi.",
+v_tag:"Option 1",v_h:"Programme de vidéos de cours",v_p:"Une communauté Skool avec des vidéos de cours pédagogiques sur le TRT, pour apprendre et comprendre à ton rythme.",v1:"Vidéos de cours pédagogiques sur le TRT",v2:"Apprends à ta vitesse, à tout moment",v3:"Une communauté de personnes qui apprennent comme toi",v_price:"19 $ par mois",v_trial:"· essai gratuit disponible",v_btn:"Rejoindre sur Skool",
+c_tag:"Option 2",c_h:"Moutaba3a ma3a Achraf 1-1",c_p:"Un plan conçu pour toi et un suivi direct avec moi, pour atteindre ton objectif.",c1:"Plan alimentaire personnalisé et optimisé",c2:"Vidéos protocoles TRT + bonus (compléments)",c3:"Suivi individuel et support WhatsApp",c_price:"À partir de 1500 Dhs",c_btn:"Voir les offres de coaching",c_wa:"Discuter sur WhatsApp",
+wa:"Bonjour Achraf 👋 je voudrais en savoir plus sur le coaching",
+disc:"Ce contenu est fourni à titre éducatif et informatif uniquement et ne constitue pas un avis médical. Tout TRT est une décision médicale à prendre et à suivre avec un médecin agréé. Achraf Ahmadi Coaching ne prescrit pas de médicaments. Les résultats varient et ne sont pas garantis."}
+};
+var lang='ar';
+function apply(l){
+  if(!T[l])l='ar';lang=l;var D=T[l];
+  document.documentElement.lang=D.code;document.documentElement.dir=D.dir;document.title=D.title;
+  document.querySelectorAll('[data-i]').forEach(function(e){e.textContent=D[e.getAttribute('data-i')]||''});
+  document.querySelectorAll('[data-ih]').forEach(function(e){e.innerHTML=D[e.getAttribute('data-ih')]||''});
+  document.getElementById('wa').href='https://wa.me/'+NUM+'?text='+encodeURIComponent(D.wa);
+  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===l?'true':'false')});
+}
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.l)})});
+apply('ar');
+</script>
+
+</body></html>
