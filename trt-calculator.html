@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TRT Lab Calculator · Achraf Ahmadi Coaching</title>
+<meta name="description" content="Check a TRT lab panel (Total T, estrone, estradiol, DHT) against optimization targets, with anastrozole and finasteride math and retest dates.">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d0d; --paper:#151515; --ink:#f0ede6; --muted:#8d8a83; --line:#2b2b2b;
+  --accent:#C9A84C; --accent-soft:#1f1b10;
+  --ok:#8fd19e; --ok-bg:#16261a; --warn:#e8c97a; --warn-bg:#2a2312; --bad:#e07a6a; --bad-bg:#2d1714;
+  --display:"Outfit",system-ui,sans-serif; --body:"Outfit",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+body{margin:0}
+header h1{font-weight:700;letter-spacing:-.01em}
+h2{font-weight:600}
+.tabs button[aria-pressed="true"]{color:#0d0d0d}
+.brand{display:flex;align-items:center;gap:10px;color:var(--accent);font-weight:500;font-size:14px;text-decoration:none}
+.brand::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--accent)}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:22px}
+header h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,5vw,40px);line-height:1.1;margin:0;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--muted);max-width:68ch}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.note{background:var(--warn-bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13.5px}
+.note b{color:var(--warn)}
+section.sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:16px}
+h2{font-family:var(--display);font-weight:600;font-size:22px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+label{display:grid;gap:4px;font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.field{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--bg)}
+.field input,.field select{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font-family:var(--mono);font-size:16px;padding:9px 10px}
+.field select.unit{flex:0 0 auto;font-size:12px;border-left:1px solid var(--line);padding:0 6px}
+.field .u{font-family:var(--mono);font-size:12px;color:var(--muted);padding:0 10px;display:flex;align-items:center;border-left:1px solid var(--line)}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.metric{border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:4px}
+.metric .k{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.metric .v{font-family:var(--mono);font-size:24px;font-variant-numeric:tabular-nums}
+.metric .v small{font-size:12px;color:var(--muted)}
+.metric .r{font-size:12.5px;color:var(--muted)}
+.pill{justify-self:start;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 9px;border-radius:99px}
+.ok{background:var(--ok-bg);color:var(--ok)} .warn{background:var(--warn-bg);color:var(--warn)} .bad{background:var(--bad-bg);color:var(--bad)} .na{background:var(--accent-soft);color:var(--muted)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;align-items:start}
+.result{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
+.dose{font-family:var(--mono);font-size:26px;font-variant-numeric:tabular-nums;line-height:1.2}
+.dose small{font-family:var(--body);font-size:13px;color:var(--muted);display:block;margin-top:2px}
+.math{font-family:var(--mono);font-size:12.5px;color:var(--muted);background:var(--bg);border-radius:6px;padding:8px 10px;overflow-x:auto;white-space:pre-wrap}
+ul.tight{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:6px 12px;border-radius:99px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.d{font-family:var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto}
+footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.pill,.dose{transition:all .15s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <a class="brand" href="/">Achraf Ahmadi Coaching</a>
+    <div class="eyebrow">Dr. Ty Vincent's posted rules · Skool community</div>
+    <h1>TRT Lab Calculator</h1>
+    <p>Enter a lab panel and see where each marker sits against Dr. Ty's targets, what his anastrozole and finasteride rules work out to, and when to retest. The fields start with example numbers; replace them with real results.</p>
+  </header>
+
+  <div class="note"><b>Educational only.</b> These are one doctor's opinions as posted in his community, turned into arithmetic. They are not a prescription. Any dose change goes through a prescriber who knows the patient.</div>
+
+  <section class="sheet" aria-labelledby="h-panel">
+    <h2 id="h-panel">1 · Lab panel</h2>
+    <div class="grid">
+      <label for="tt">Total testosterone
+        <div class="field"><input id="tt" type="number" inputmode="decimal" value="2350"><span class="u">ng/dL</span></div></label>
+      <label for="e1">Estrone (E1)
+        <div class="field"><input id="e1" type="number" inputmode="decimal" value="78"><span class="u">pg/mL</span></div></label>
+      <label for="e2">Estradiol (E2)
+        <div class="field"><input id="e2" type="number" inputmode="decimal" value="64"><span class="u">pg/mL</span></div></label>
+      <label for="dht">DHT
+        <div class="field"><input id="dht" type="number" inputmode="decimal" value="1450"><select class="unit" id="dhtUnit" aria-label="DHT unit"><option value="pg">pg/mL</option><option value="ng">ng/dL</option></select></div></label>
+    </div>
+    <div class="panel" id="panel"></div>
+  </section>
+
+  <div class="two">
+    <section class="sheet" aria-labelledby="h-ai">
+      <h2 id="h-ai">2 · Anastrozole</h2>
+      <div class="grid">
+        <label for="eGoal">E1+E2 goal (top)
+          <div class="field"><select id="eGoal"><option value="100" selected>100 (standard)</option><option value="120">120 (tolerant men)</option><option value="80">80 (sensitive)</option></select></div></label>
+      </div>
+      <div class="result" id="aiOut"></div>
+    </section>
+
+    <section class="sheet" aria-labelledby="h-5ar">
+      <h2 id="h-5ar">3 · DHT control</h2>
+      <div class="tabs" role="group" aria-label="5-ARI drug">
+        <button id="tFin" aria-pressed="true">Finasteride</button>
+        <button id="tDut" aria-pressed="false">Dutasteride</button>
+      </div>
+      <div class="grid">
+        <label for="dGoal">DHT target (top)
+          <div class="field"><select id="dGoal"><option value="120" selected>120 ng/dL (standard)</option><option value="100">100 ng/dL (hair-sensitive)</option></select></div></label>
+        <label for="hair">Hair loss or prostate symptoms?
+          <div class="field"><select id="hair"><option value="no" selected>No</option><option value="yes">Yes</option></select></div></label>
+      </div>
+      <div class="result" id="dOut"></div>
+    </section>
+  </div>
+
+  <section class="sheet" aria-labelledby="h-time">
+    <h2 id="h-time">4 · Retest schedule</h2>
+    <div class="grid">
+      <label for="chg">Date of last TRT / AI / 5-ARI change
+        <div class="field"><input id="chg" type="date"></div></label>
+    </div>
+    <div class="tbl"><table><thead><tr><th>When</th><th>Date</th><th>Test</th></tr></thead><tbody id="sched"></tbody></table></div>
+    <ul class="tight">
+      <li>Always test <b>estrone and estradiol together</b>. Estrone can run 3–4× estradiol.</li>
+      <li>Retest early after losing about 15–20 lb of fat. Estrogen conversion drops, and the AI dose usually has to come down.</li>
+      <li>After adding HCG, recheck estrogen and DHT a few weeks later.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <div>Sources (login required): <a href="https://www.skool.com/drtyvincent/doctor-says-dont-use-anastrozole-do-you-agree" target="_blank" rel="noopener">AI dosing tiers</a> · <a href="https://www.skool.com/drtyvincent/need-advice-on-estrogen" target="_blank" rel="noopener">1 mg per 50 points</a> · <a href="https://www.skool.com/drtyvincent/update-and-upcoming-content-plans" target="_blank" rel="noopener">finasteride rule</a> · <a href="https://www.skool.com/drtyvincent/hi-everyone" target="_blank" rel="noopener">5–15 mg/week</a> · <a href="https://www.skool.com/drtyvincent/just-getting-started" target="_blank" rel="noopener">retest timing</a></div>
+    <div>Built 21 Oct 2026 from his written community replies.</div>
+  </footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>{const v=parseFloat($(id).value);return isFinite(v)?v:null};
+const fmt=(n,d=0)=>n==null?'—':n.toLocaleString('en-US',{maximumFractionDigits:d,minimumFractionDigits:d});
+const pill=(cls,t)=>`<span class="pill ${cls}">${t}</span>`;
+let drug='fin';
+
+function dhtNg(){const v=num('dht');if(v==null)return null;return $('dhtUnit').value==='pg'?v/10:v}
+
+function panel(){
+  const tt=num('tt'),e1=num('e1'),e2=num('e2'),d=dhtNg();
+  const es=(e1!=null&&e2!=null)?e1+e2:null;
+  const cards=[];
+  let s;
+  s=tt==null?['na','No value']:tt>=2000?['ok','In target']:tt>=1500?['warn','Below his target']:['bad','Low'];
+  cards.push(['Total T',fmt(tt),'ng/dL','Target above 2000 (2500–3000 for many)',s]);
+  const top=+$('eGoal').value;
+  s=es==null?['na',e2!=null?'Need E1 too':'No value']:es<50?['bad','Too low']:es<=top?['ok','In target']:es<=125?['warn','Above goal']:['bad','High'];
+  cards.push(['E1 + E2',fmt(es),'pg/mL','Target 50–'+top+'; under 50 feels like low T',s]);
+  const dt=+$('dGoal').value;
+  s=d==null?['na','No value']:d<30?['bad','Crashed']:d<60?['warn','Low']:d<=dt?['ok','In target']:['warn','Above '+dt];
+  cards.push(['DHT',fmt(d),'ng/dL','Target 60–120 ng/dL (600–1200 pg/mL)',s]);
+  $('panel').innerHTML=cards.map(([k,v,u,r,[c,t]])=>`<div class="metric"><div class="k">${k}</div><div class="v">${v} <small>${u}</small></div>${pill(c,t)}<div class="r">${r}</div></div>`).join('');
+  return {tt,e1,e2,es,d};
+}
+
+function aiSchedule(mgwk){
+  if(mgwk<=0)return null;
+  if(mgwk<=1)return ['0.5 mg twice a week','or 1 mg once a week'];
+  if(mgwk<=2.5)return ['1 mg every 3 days','≈ 2.3 mg/week; easy to pair with injection days'];
+  if(mgwk<=4)return ['1 mg every 2 days','≈ 3.5 mg/week'];
+  return ['1 mg daily','He calls this rare: only for E1+E2 above about 300'];
+}
+
+function ai(p){
+  const top=+$('eGoal').value; let h='';
+  if(p.e2!=null&&p.e1==null){h+=`<p>${pill('warn','Estrone missing')} He won't dose an AI from estradiol alone. Get E1 tested; it can be 3–4× E2.</p>`}
+  if(p.es==null){$('aiOut').innerHTML=h||'<p>Enter both E1 and E2.</p>';return}
+  if(p.es<50){$('aiOut').innerHTML=`<div class="dose">Reduce or pause AI<small>E1+E2 of ${fmt(p.es)} is below 50. He says this causes fatigue, low mood, brain fog, low libido and ED, much like low T.</small></div>`;return}
+  const over=p.es-top;
+  if(over<=0){$('aiOut').innerHTML=`<div class="dose">No AI needed<small>E1+E2 of ${fmt(p.es)} is inside 50–${top}.</small></div>`;return}
+  const mg=Math.ceil(over/50);
+  const [sch,sub]=aiSchedule(mg);
+  $('aiOut').innerHTML=`<div class="dose">${sch}<small>${sub}</small></div>
+  <div class="math">E1+E2 ${fmt(p.es)} − goal ${top} = ${fmt(over)} over
+${fmt(over)} ÷ 50, rounded up = ${mg} → ~${mg} mg/week, spaced evenly</div>
+  <ul class="tight"><li>His tiers: ~150 → 0.5 mg 2×/wk · 150–200 → 1 mg q3d · ~250 → 1 mg q2d · 300+ → daily.</li>
+  <li>If symptoms are mostly mood or mental, he suggests trying letrozole instead: about ¼ of a 2.5 mg pill a couple of times a week.</li>
+  <li>Retest E1, E2 and Total T in 2–3 weeks.</li></ul>`;
+}
+
+function dht(p){
+  const tgt=+$('dGoal').value, hair=$('hair').value==='yes', d=p.d;
+  if(d==null){$('dOut').innerHTML='<p>Enter a DHT result. He says never start a 5-ARI without one.</p>';return}
+  if(d<60){$('dOut').innerHTML=`<div class="dose">Don't start a 5-ARI<small>DHT ${fmt(d)} ng/dL is already below 60. If you're already on one, it's likely too strong; this is the pattern he calls "finasteride syndrome."</small></div>`;return}
+  if(d<=120&&!(hair&&d>tgt)){$('dOut').innerHTML=`<div class="dose">No 5-ARI needed<small>DHT ${fmt(d)} ng/dL is within range${hair?'. Hair loss here is probably not DHT-driven. He prefers topical finasteride + minoxidil, then rechecking DHT after a couple of weeks.':'.'}</small></div>`;return}
+  const over=d-tgt;
+  if(drug==='dut'){
+    $('dOut').innerHTML=`<div class="dose">No posted dutasteride rule<small>DHT is ${fmt(over)} ng/dL above your ${tgt} target, so he would treat it. But his 5–7 mg/week per 50 points is a finasteride number. Dutasteride is roughly 10× more potent per mg, and he never gave a dutasteride dose.</small></div>
+    <ul class="tight"><li>Don't plug dutasteride into the finasteride math. That would massively overdose and crash DHT.</li><li>Ask the prescriber for an individualized dutasteride dose, then recheck DHT in 2–3 weeks and adjust.</li><li>He does name topical dutasteride + minoxidil as a good combination for hair.</li></ul>`;return}
+  const lo=over/50*5, hi=over/50*7;
+  const r=x=>Math.round(x*2)/2;
+  $('dOut').innerHTML=`<div class="dose">${fmt(r(lo),1)}–${fmt(r(hi),1)} mg/week finasteride<small>Spread across the week, e.g. ${lo<=7?'1 mg on 5–7 days':'split doses on most days'}. He says most men land between 5 and 15 mg/week.</small></div>
+  <div class="math">DHT ${fmt(d)} − target ${tgt} = ${fmt(over)} ng/dL over
+${fmt(over)} ÷ 50 × 5–7 mg = ${fmt(lo,1)}–${fmt(hi,1)} mg/week</div>
+  <ul class="tight"><li>He stresses this is tailoring, not a fixed formula. Recheck DHT and adjust proportionally.</li><li>Keep it above 60. Below 30 is where he sees ED, fatigue and urinary leakage.</li>${hi>15?'<li>This is above his usual 5–15 mg/week. Confirm the DHT result and unit before acting on it.</li>':''}</ul>`;
+}
+
+function sched(){
+  let base=$('chg').valueAsDate; if(!base){base=new Date();}
+  const add=(d)=>{const x=new Date(base);x.setUTCDate(x.getUTCDate()+d);return x.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})};
+  const rows=[['2–3 weeks',add(14)+' – '+add(21),'Total T, E1, E2, DHT (+ CBC, PSA as needed)'],
+    ['2–3 weeks after any med change','repeat','The marker you adjusted'],
+    ['6 months once stable',add(182),'E1, E2, Total T, DHT']];
+  $('sched').innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td class="d">${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+}
+
+function run(){const p=panel();ai(p);dht(p);sched()}
+['tt','e1','e2','dht','dhtUnit','eGoal','dGoal','hair','chg'].forEach(id=>{$(id).addEventListener('input',run);$(id).addEventListener('change',run)});
+$('tFin').onclick=()=>{drug='fin';$('tFin').setAttribute('aria-pressed','true');$('tDut').setAttribute('aria-pressed','false');run()};
+$('tDut').onclick=()=>{drug='dut';$('tDut').setAttribute('aria-pressed','true');$('tFin').setAttribute('aria-pressed','false');run()};
+try{$('chg').valueAsDate=new Date(Date.UTC(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()))}catch(e){}
+run();
+</script>
+
+</body>
+</html>
