@@ -15,7 +15,7 @@
  */
 
 var SHEET_NAME = 'Leads';
-var HEADERS = ['Time (Morocco)', 'Status', 'Name', 'Plan', 'Value (MAD)', 'Goal', 'Language',
+var HEADERS = ['Time (Morocco)', 'Status', 'Name', 'WhatsApp', 'Plan', 'Value (MAD)', 'Goal', 'Language',
                'Source', 'Medium', 'Campaign / story', 'Referrer', 'Page', 'Lead ID', 'Last update'];
 
 function doPost(e) {
@@ -25,7 +25,7 @@ function doPost(e) {
     var d = JSON.parse(e.postData.contents);
     var sh = getSheet_();
     var now = Utilities.formatDate(new Date(), 'Africa/Casablanca', 'yyyy-MM-dd HH:mm:ss');
-    var row = [now, label_(d.status), clean_(d.name), clean_(d.plan), d.value || '', clean_(d.goal),
+    var row = [now, label_(d.status), clean_(d.name), "'" + clean_(d.phone).replace(/^'/, ''), clean_(d.plan), d.value || '', clean_(d.goal),
                clean_(d.lang), clean_(d.utm_source), clean_(d.utm_medium), clean_(d.utm_campaign),
                clean_(d.referrer), clean_(d.page), clean_(d.id), now];
 
@@ -79,6 +79,6 @@ function ok_() {
 
 // Open the editor and run this once to test: it should add a row to the sheet.
 function testRow() {
-  doPost({ postData: { contents: JSON.stringify({ id: 'test1', status: 'started', name: 'Test', plan: '3 months',
+  doPost({ postData: { contents: JSON.stringify({ id: 'test1', status: 'started', name: 'Test', phone: '0612345678', plan: '3 months',
     value: 3500, goal: 'energy', lang: 'ar', utm_source: 'instagram', utm_medium: 'story', utm_campaign: 'test' }) } });
 }
