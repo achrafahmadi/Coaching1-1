@@ -233,6 +233,7 @@ function track(meta,ga,p,custom){p=p||{};
  try{if(window.fbq&&META_PIXEL_ID)fbq(custom?'trackCustom':'track',meta,p)}catch(e){}
  try{if(window.gtag&&GA4_ID)gtag('event',ga,p)}catch(e){}}
 </script>
+<script src="/track.js" defer></script>
 </head>
 <body>
 <header class="nav" id="nav"><div class="navin">
@@ -379,7 +380,6 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 var saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
 apply(T[saved]?saved:'ar');
-document.querySelectorAll('a[href*="instagram.com"]').forEach(function(a){a.addEventListener('click',function(){track('ClickInstagram','click_instagram',{lang:lang},true)})});
 /* ===== SAVE LEADS TO GOOGLE SHEET (before WhatsApp) ===== */
 var UTM=(function(){var q=new URLSearchParams(location.search),o={};
  ['utm_source','utm_medium','utm_campaign'].forEach(function(k){o[k]=q.get(k)||''});

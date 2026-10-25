@@ -191,6 +191,7 @@
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
+<script src="/track.js" defer></script>
 </head>
 <body>
 <div class="wrap">
@@ -470,6 +471,7 @@ form.addEventListener('submit', async (e) => {
     } catch (err) { /* still show success; WhatsApp confirmation is the backup */ }
   }
 
+  try { if (window.gtag) gtag('event', 'sign_up', { method: 'trt_signup_form', plan: data.plan, goal: data.goal }); } catch (e) {}
   document.getElementById('doneName').textContent = data.name.split(' ')[0];
   const rows = [['Plan', data.plan], ['Goal', data.goal], ['Experience', data.experience], ['Weight', data.weight + ' kg'], ['Height', data.height + ' cm'], ['Signed', data.signedAt]];
   document.getElementById('summary').innerHTML = rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
