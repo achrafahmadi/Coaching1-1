@@ -226,7 +226,7 @@ var PLAN_VALUE={'1':1500,'2':3500,'3':8000}; // MAD, matches the plan cards
 var LEADS_URL='https://script.google.com/macros/s/AKfycbzqvY4OpKv0R4E-GFbXFl88r-qTfAS0-rFZyszxcSJfoBLfen9DOJLJpmNQbA6Uk6PL/exec';      // Google Apps Script Web app URL (…/exec) — saves every form to your Google Sheet
 (function(){
  if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',META_PIXEL_ID);fbq('track','PageView');}
- if(GA4_ID){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA4_ID;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',GA4_ID);}
+ if(GA4_ID){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA4_ID;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());var _q=new URLSearchParams(location.search),_s=_q.get('s'),_cfg={};if(_s&&!_q.get('utm_source'))_cfg={campaign_source:'instagram',campaign_medium:'story',campaign_name:_s};gtag('config',GA4_ID,_cfg);}
 })();
 /* track(metaEvent, ga4Event, params, custom) — sends one step of the funnel to every enabled tool */
 function track(meta,ga,p,custom){p=p||{};
@@ -383,6 +383,7 @@ document.querySelectorAll('a[href*="instagram.com"]').forEach(function(a){a.addE
 /* ===== SAVE LEADS TO GOOGLE SHEET (before WhatsApp) ===== */
 var UTM=(function(){var q=new URLSearchParams(location.search),o={};
  ['utm_source','utm_medium','utm_campaign'].forEach(function(k){o[k]=q.get(k)||''});
+ var st=q.get('s');if(st&&!o.utm_source){o.utm_source='instagram';o.utm_medium='story';o.utm_campaign=st}
  try{if(o.utm_source||o.utm_campaign)sessionStorage.setItem('utm',JSON.stringify(o));else o=JSON.parse(sessionStorage.getItem('utm'))||o}catch(e){}
  return o})();
 var LEAD_ID=Date.now().toString(36)+Math.random().toString(36).slice(2,6),lastSent='';
