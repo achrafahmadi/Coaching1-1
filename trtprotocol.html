@@ -218,6 +218,20 @@ html[dir=ltr] .scard{direction:ltr}
 .scard small{color:var(--muted);font-size:12.5px}
 @media (max-width:820px){.sgrid{grid-template-columns:1fr}.swrap .cbtn{display:none}}
 .modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}.modal[hidden]{display:none}.mbox{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px 24px 26px;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.6)}.mbox h3{font-size:26px;margin:0 0 8px;padding-inline-end:36px}.mbox p{color:var(--muted);margin:0 0 6px;font-size:15.5px}.mbox form{margin:18px 0 0;max-width:none}.mx{position:absolute;top:10px;inset-inline-end:12px;background:none;border:0;color:var(--ink);font-size:30px;line-height:1;cursor:pointer;padding:6px}</style>
+<script>
+/* ===== CONVERSION TRACKING — paste your IDs here (leave '' to switch one off) ===== */
+var META_PIXEL_ID='';   // Meta Events Manager → Data sources → Pixel ID (digits only)
+var GA4_ID='';          // Google Analytics → Admin → Data streams → Measurement ID (G-XXXXXXX)
+var PLAN_VALUE={'1':1500,'2':3500,'3':8000}; // MAD, matches the plan cards
+(function(){
+ if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',META_PIXEL_ID);fbq('track','PageView');}
+ if(GA4_ID){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA4_ID;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',GA4_ID);}
+})();
+/* track(metaEvent, ga4Event, params, custom) — sends one step of the funnel to every enabled tool */
+function track(meta,ga,p,custom){p=p||{};
+ try{if(window.fbq&&META_PIXEL_ID)fbq(custom?'trackCustom':'track',meta,p)}catch(e){}
+ try{if(window.gtag&&GA4_ID)gtag('event',ga,p)}catch(e){}}
+</script>
 </head>
 <body>
 <header class="nav" id="nav"><div class="navin">
@@ -345,13 +359,14 @@ function apply(l){lang=l;var D=T[l];
 document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.l)})});
 document.querySelectorAll('[data-pick]').forEach(function(a){a.addEventListener('click',function(){document.getElementById('c').value=a.dataset.pick})});
 var md=document.getElementById('modal');
-function om(pk){if(pk)document.getElementById('c').value=pk;md.hidden=false;document.body.style.overflow='hidden';setTimeout(function(){document.getElementById('n').focus()},50)}
+function om(pk){if(pk)document.getElementById('c').value=pk;var _c=document.getElementById('c').value;track('InitiateCheckout','begin_checkout',{plan:_c,value:PLAN_VALUE[_c],currency:'MAD',lang:lang});md.hidden=false;document.body.style.overflow='hidden';setTimeout(function(){document.getElementById('n').focus()},50)}
 function cm(){md.hidden=true;document.body.style.overflow=''}
 document.querySelectorAll('[data-open]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var o=document.getElementById('nav');if(o)o.classList.remove('open');om(a.dataset.pick)})});
 document.getElementById('mx').addEventListener('click',cm);md.addEventListener('click',function(e){if(e.target===md)cm()});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!md.hidden)cm()});
 document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();
  var D=T[lang],c=document.getElementById('c').value;
  var t=D.f_msg.replace('{n}',document.getElementById('n').value).replace('{p}',D['o'+c]).replace('{g}',document.getElementById('g').value);
+ track('Lead','generate_lead',{plan:c,value:PLAN_VALUE[c],currency:'MAD',lang:lang});
  window.open('https://wa.me/'+NUM+'?text='+encodeURIComponent(t),'_blank','noopener');cm()});
 window.addEventListener('scroll',function(){document.querySelector('.sticky').classList.toggle('show',scrollY>innerHeight*.7)},{passive:true});
 var nav=document.getElementById('nav'),bg=document.getElementById('burger');
@@ -362,6 +377,7 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 var saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
 apply(T[saved]?saved:'ar');
+document.querySelectorAll('a[href*="instagram.com"]').forEach(function(a){a.addEventListener('click',function(){track('ClickInstagram','click_instagram',{lang:lang},true)})});
 </script>
 </body>
 </html>
