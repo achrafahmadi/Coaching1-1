@@ -393,7 +393,7 @@ function saveLead(status){if(!LEADS_URL)return;
  var d={id:LEAD_ID,status:status,name:n,phone:tel,plan:T[lang]['o'+c]||c,value:PLAN_VALUE[c],goal:g,lang:lang,
   utm_source:UTM.utm_source,utm_medium:UTM.utm_medium,utm_campaign:UTM.utm_campaign,referrer:document.referrer,page:location.pathname};
  var body=JSON.stringify(d);if(body===lastSent)return;lastSent=body;
- try{if(navigator.sendBeacon&&navigator.sendBeacon(LEADS_URL,new Blob([body],{type:'text/plain;charset=utf-8'})))return}catch(e){}
+ /* keepalive fetch: survives opening WhatsApp; sendBeacon is silently dropped by Apps Script */
  try{fetch(LEADS_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:body})}catch(e){}}
 ['n','tel','g','c'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){saveLead('started')})});
 cmHook=function(){saveLead('started')};
