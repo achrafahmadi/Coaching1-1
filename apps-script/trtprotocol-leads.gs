@@ -16,7 +16,7 @@
 
 var SHEET_NAME = 'Leads';
 var HEADERS = ['Time (Morocco)', 'Status', 'Name', 'WhatsApp', 'Plan', 'Value (MAD)', 'Goal', 'Language',
-               'Source', 'Medium', 'Campaign / story', 'Referrer', 'Page', 'Lead ID', 'Last update'];
+               'Source', 'Medium', 'Campaign / story', 'Referrer', 'Page', 'Lead ID', 'Last update', 'Payment'];
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -27,7 +27,7 @@ function doPost(e) {
     var now = Utilities.formatDate(new Date(), 'Africa/Casablanca', 'yyyy-MM-dd HH:mm:ss');
     var row = [now, label_(d.status), clean_(d.name), "'" + clean_(d.phone).replace(/^'/, ''), clean_(d.plan), d.value || '', clean_(d.goal),
                clean_(d.lang), clean_(d.utm_source), clean_(d.utm_medium), clean_(d.utm_campaign),
-               clean_(d.referrer), clean_(d.page), clean_(d.id), now];
+               clean_(d.referrer), clean_(d.page), clean_(d.id), now, clean_(d.pay)];
 
     // Same visitor → update their row instead of adding a new one
     var idCol = HEADERS.indexOf('Lead ID') + 1;
@@ -59,6 +59,9 @@ function getSheet_() {
     sh.appendRow(HEADERS);
     sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold').setBackground('#C9A84C');
     sh.setFrozenRows(1);
+  } else if (sh.getRange(1, HEADERS.length).getValue() !== HEADERS[HEADERS.length - 1]) {
+    // Older sheet: add any new header cells (e.g. "Payment") at the end
+    sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold').setBackground('#C9A84C');
   }
   return sh;
 }
