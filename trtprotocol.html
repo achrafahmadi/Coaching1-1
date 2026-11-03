@@ -246,6 +246,9 @@ html[dir=ltr] .scard{direction:ltr}
 .btn.ghost{border-color:rgba(37,211,102,.6)}
 .scenes{padding:40px 0 0}
 .scene span{display:block}
+
+/* keep hero text below the fixed top bar (iOS Safari, large text) */
+@media(max-width:760px){.hero .box{padding-top:calc(env(safe-area-inset-top,0px) + 92px)}.hero h1{font-size:clamp(32px,9vw,46px)}}
 </style>
 <script>
 /* ===== CONVERSION TRACKING — paste your IDs here (leave '' to switch one off) ===== */
