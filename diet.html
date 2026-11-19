@@ -310,7 +310,7 @@ const vl=v=>AR()?(VAL[v]||v):v;
    STATE
 ========================================================= */
 const KEY='aac-diet-v1';
-const defaultState=()=>({profile:null, choices:{}, log:{}, xp:0, badges:[], shop:{}, weights:{}, auth:null});
+const defaultState=()=>({profile:null, choices:{}, log:{}, xp:0, badges:[], shop:{}, weights:{}, auth:null, upsell:{shown:[]}});
 let S = {...defaultState(), ...(load()||{})};
 function load(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
@@ -462,6 +462,7 @@ function todayView(){
   <div class="h2">${tx("Today's meals",'وجبات اليوم')} <small>${tx('Tap a food to swap it','ضغط على الماكلة باش تبدلها')}</small></div>
   ${meals.map(m=>mealCard(m,L)).join('')}
   ${L.type==='H'?`<div class="note" style="margin:0 20px 14px">🚀 ${tx('<b>High day:</b> up to half your carbs can come from fast, zero-fat carbs — dates, honey, juice, khobz. Optional cheat meal replaces your post-workout meal.','<b>نهار الكارب:</b> تقدر تاخد حتى نص الكارب من حوايج سريعة وبلا دهون — التمر، العسل، العصير، الخبز. وجبة الشيت (اختيارية) كتعوض وجبة بعد التمرين.')}</div>`:''}
+  ${upsellCard()}
   <div class="foot">${tx('TAP ✓ WHEN YOU EAT A MEAL · +10 XP EACH','ضغط ✓ ملي تاكل الوجبة · +10 XP لكل وحدة')}</div>`;
 }
 function mealCard(m,L){
@@ -546,11 +547,12 @@ function meView(){
   <div class="card"><div class="row-l"><span>${tx('Goal','الهدف')}</span><b>${vl(p.goal)}</b></div><div class="row-l"><span>${tx('Body','الجسم')}</span><b>${p.weight} ${tx('kg','كغ')} · ${p.height} ${tx('cm','سم')} · ${p.age} ${tx('y','عام')}</b></div>
   <div class="row-l"><span>${tx('Leanness / activity','الشحم / الحركة')}</span><b>${vl(p.bf)} · ${vl(p.activity)}</b></div><div class="row-l"><span>${tx('Training days','أيام التمرين')}</span><b>${p.days} ${tx('/ week','فالسيمانة')}</b></div></div>
   <button class="btn2 gold" onclick="startWizard()">✏️ ${tx('Update my stats','بدل المعلومات ديالي')}</button>
+  ${coachCard()}
   <div class="h2">${tx('Badges','البادجات')} <small>${S.badges.length}/${BADGES.length}</small></div>
   <div class="badges" style="margin:0 20px 6px">${BADGES.map(b=>`<div class="badge ${S.badges.includes(b.id)?'':'locked'}"><div class="e">${b.e}</div><b>${L2(b.n)}</b><span>${L2(b.d)}</span></div>`).join('')}</div>
   <div class="h2">${tx('The rules','القواعد')}</div>
   ${RULES.map(r=>`<details><summary>${r[0]} ${L2(r[1])}</summary><div class="in">${L2(r[2])}</div></details>`).join('')}
-  <div class="card" style="background:var(--navy);color:#fff;margin-top:18px;text-align:center"><div style="font-size:26px">🏆</div><div style="font-weight:800;font-size:16px;margin:6px 0 4px">${tx('Want this done for you?','بغيتي شي حد يتبعك فهادشي؟')}</div><div style="color:#B8C2D0;font-size:13px;font-weight:600;margin-bottom:14px">${tx('1:1 coaching with bloodwork & weekly check-ins','كوتشينگ 1:1 مع التحاليل والمتابعة كل سيمانة')}</div><a href="https://achrafahmadi.com" target="_blank" rel="noopener" style="display:block;background:var(--gold);color:var(--navy);padding:14px;border-radius:16px;font-weight:800;text-decoration:none">${tx('Apply','سجل دابا')} · achrafahmadi.com</a></div>
+
   ${S.auth?`<div class="card" style="margin-top:14px"><div class="row-l"><span>👤 ${tx('Signed in as','داخل ب')}</span><b>${S.auth.name}</b></div><div class="row-l"><span>📱 WhatsApp</span><b dir="ltr">+${S.auth.phone}</b></div></div><button class="btn2" onclick="signOut()">${tx('Sign out','خروج')}</button>`:''}
   <button class="btn2" style="color:var(--red)" onclick="resetAll()">${tx('Reset my plan','عاود البلان من الأول')}</button>
   <div class="foot">${tx('ACHRAF AHMADI COACHING · @HIGHTACHRAF','أشرف أحمدي كوتشينگ · @hightachraf')}</div>`;
@@ -571,6 +573,7 @@ function render(){
   if(draft||!S.profile){if(!draft)startWizard();else wizView();return}
   const V={today:todayView,plan:planView,progress:progressView,shop:shopView,me:meView}[view]();
   const tabs=[['today','🏠',tx('Today','اليوم')],['plan','📋',tx('Plan','البلان')],['progress','📈',tx('Progress','التقدم')],['shop','🛒',tx('Shop','الشوبينگ')],['me','🙋‍♂️',tx('Me','أنا')]];
+  setTimeout(maybeUpsell,0);
   R.innerHTML=`<div class="app">${V}</div><nav class="nav">${tabs.map(([k,i,l])=>`<button class="${view===k?'on':''}" onclick="go('${k}')"><span class="ni">${i}</span>${l}</button>`).join('')}</nav>`;
 }
 function go(v){view=v;wDraft=null;render();scrollTo({top:0,behavior:'smooth'})}
@@ -746,6 +749,91 @@ function applyAdj(n){
   S.profile.carbAdj=Math.max(-150,Math.min(150,(S.profile.carbAdj||0)+n));
   push({type:'carb-adjust',date:today(),details:(n>0?'+':'')+n+' g → total '+S.profile.carbAdj+' g'});
   toast(tx('Carbs updated: ','الكارب تبدل: ')+(S.profile.carbAdj>0?'+':'')+S.profile.carbAdj+' '+G());render();
+}
+
+
+/* =========================================================
+   COACHING UPSELL
+========================================================= */
+const WA='212764747363', PLANS_URL='https://achrafahmadi.com/trtprotocol';
+function daysLogged(){
+  const d=new Set(Object.keys(S.log).filter(k=>S.log[k].done.length));
+  Object.keys(S.weights||{}).forEach(k=>d.add(k));
+  return d.size;
+}
+function waLink(trigger){
+  const p=S.profile||{}, n=(S.auth&&S.auth.name)||'', w=weightStats().last??p.weight, days=daysLogged();
+  const msg=AR()
+    ?`السلام أشرف 👋 أنا ${n}، كنستعمل الدايت آپ ديالك ${days} أيام. الهدف: ${vl(p.goal)} · الوزن: ${w} كغ.${trigger==='stuck'?' الوزن ما بغاش يتحرك.':''} بغيت نعرف على الكوتشينگ 1:1.`
+    :`Hi Achraf 👋 I'm ${n}, I've used your diet app for ${days} days. Goal: ${p.goal} · Weight: ${w} kg.${trigger==='stuck'?' My weight has stalled.':''} I'd like to know about 1:1 coaching.`;
+  return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+}
+function upsellClick(kind,trigger){
+  S.upsell=S.upsell||{shown:[]}; S.upsell.clicked=true;
+  push({type:'coaching-'+kind,date:today(),details:'Clicked '+(kind==='whatsapp'?'WhatsApp':'see plans')+' ('+trigger+', day '+daysLogged()+')'});
+  document.querySelectorAll('.ov').forEach(o=>o.remove());
+}
+function coachButtons(trigger){
+  return `<a class="done-btn" style="text-decoration:none;background:#25D366" href="${waLink(trigger)}" target="_blank" rel="noopener" onclick="upsellClick('whatsapp','${trigger}')">💬 ${tx('Message Achraf on WhatsApp','هضر مع أشرف فالواتساب')}</a>
+    <a class="btn2" style="width:100%;margin:8px 0 0;text-align:center;text-decoration:none;color:var(--navy)" href="${PLANS_URL}" target="_blank" rel="noopener" onclick="upsellClick('plans','${trigger}')">${tx('See coaching plans','شوف البرامج والأثمنة')}</a>`;
+}
+const UPSELL={
+  d7:{e:'🔥',h:['7 days in a row','7 أيام وانت ملتازم'],
+      b:["That's rare: most people stop in week one. Ready for the next level? Bloodwork, a protocol built around your hormones, and weekly WhatsApp check-ins with me.",
+         'هادشي نادر: بزاف ديال الناس كيحبسو فالسيمانة اللولة. واجد للمستوى الجاي؟ تحاليل الدم، بروتوكول مفصل على الهرمونات ديالك، ومتابعة كل سيمانة فالواتساب معايا.']},
+  d21:{e:'🏆',h:['3 weeks strong','3 سيمانات وانت ثابت'],
+      b:["You've proven you can follow a plan. Imagine what we can do with your bloodwork and a protocol made only for you.",
+         'بينتي بلي قادر تتبع البلان. تخيل شنو نقدرو نديرو إلا شفنا التحاليل ديالك ودرنا ليك بروتوكول غير ليك.']},
+  stuck:{e:'🤔',h:['Your weight has stalled','الوزن ما بغاش يتحرك'],
+      b:["You're following the plan but progress is slow. This is where a coach makes the difference: we look at bloodwork, hormones and sleep, not just calories.",
+         'كتبع البلان مزيان ولكن النتيجة بطيئة. هنا فين كيبان الفرق ديال الكوتش: كنشوفو التحاليل، الهرمونات والنعاس، ماشي غير الكالوري.']}
+};
+function pickUpsell(){
+  if(!S.profile) return null;
+  const u=S.upsell=S.upsell||{shown:[]};
+  if(u.clicked) return null;
+  if(u.snoozeUntil&&today()<u.snoozeUntil) return null;
+  const st=weightStats(), d=daysLogged();
+  if(st.advice&&st.advice.adj!==0&&((S.profile.goal==='Bulk'&&st.change<0.1)||(S.profile.goal==='Cut'&&st.advice.adj<0))){
+    const key='stuck-w'+st.weeks.length; if(!u.shown.includes(key)&&u.shown.filter(k=>k.startsWith('stuck')).length<2) return {key,t:'stuck'};
+  }
+  if(d>=21&&!u.shown.includes('d21')) return {key:'d21',t:'d21'};
+  if(d>=7&&!u.shown.includes('d7')) return {key:'d7',t:'d7'};
+  return null;
+}
+function maybeUpsell(){
+  if(view!=='today'||document.querySelector('.ov')) return;
+  const p=pickUpsell(); if(!p) return;
+  S.upsell.shown.push(p.key); push({type:'coaching-prompt',date:today(),details:'Shown: '+p.key+' (day '+daysLogged()+')'});
+  const c=UPSELL[p.t];
+  setTimeout(()=>{
+    const ov=document.createElement('div');ov.className='ov';
+    const later=()=>{S.upsell.snoozeUntil=shiftDay(today(),3);push({type:'coaching-later',date:today(),details:p.key});ov.remove();render()};
+    ov.onclick=e=>{if(e.target===ov)later()};
+    ov.innerHTML=`<div class="sheet" style="text-align:center"><div class="grab"></div>
+      <div style="font-size:46px;margin:4px 0 2px">${c.e}</div>
+      <h3 style="font-size:22px">${L2(c.h)}</h3>
+      <p class="sub" style="font-size:14px;line-height:1.55;margin:8px 0 18px">${L2(c.b)}</p>
+      ${coachButtons(p.t)}
+      <button class="btn2" style="width:100%;margin:8px 0 0;box-shadow:none;color:var(--muted)" id="later">${tx('Maybe later','من بعد')}</button></div>`;
+    document.body.appendChild(ov); ov.querySelector('#later').onclick=later;
+    if(p.t!=='stuck') confetti(90);
+  },900);
+}
+function upsellCard(){
+  const u=S.upsell||{shown:[]};
+  if(!u.shown.length||u.clicked) return '';
+  return `<div class="card" style="background:linear-gradient(135deg,#0D1B2A,#1F3550);color:#fff">
+    <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px"><div style="font-size:30px">🏆</div><div><div style="font-weight:800;font-size:15px">${tx('Want faster results?','بغيتي نتيجة أسرع؟')}</div>
+    <div style="font-size:12px;color:#B8C2D0;font-weight:600">${tx('1:1 coaching with bloodwork & weekly check-ins','كوتشينگ 1:1 مع التحاليل والمتابعة كل سيمانة')}</div></div></div>
+    <a class="done-btn" style="text-decoration:none;background:var(--gold);color:var(--navy)" href="${waLink('card')}" target="_blank" rel="noopener" onclick="upsellClick('whatsapp','card')">💬 ${tx('Message Achraf','هضر مع أشرف')}</a></div>`;
+}
+function coachCard(){
+  return `<div class="card" style="background:var(--navy);color:#fff;text-align:center"><div style="font-size:26px">🏆</div>
+    <div style="font-weight:800;font-size:16px;margin:6px 0 4px">${tx('Want this done for you?','بغيتي شي حد يتبعك فهادشي؟')}</div>
+    <div style="color:#B8C2D0;font-size:13px;font-weight:600;margin-bottom:14px">${tx('1:1 coaching with bloodwork & weekly check-ins','كوتشينگ 1:1 مع التحاليل والمتابعة كل سيمانة')}</div>
+    <a class="done-btn" style="text-decoration:none;background:#25D366" href="${waLink('me')}" target="_blank" rel="noopener" onclick="upsellClick('whatsapp','me')">💬 ${tx('Message Achraf on WhatsApp','هضر مع أشرف فالواتساب')}</a>
+    <a style="display:block;color:var(--gold);font-weight:800;font-size:13px;margin-top:12px;text-decoration:none" href="${PLANS_URL}" target="_blank" rel="noopener" onclick="upsellClick('plans','me')">${tx('See coaching plans →','شوف البرامج والأثمنة ←')}</a></div>`;
 }
 
 applyDir();
