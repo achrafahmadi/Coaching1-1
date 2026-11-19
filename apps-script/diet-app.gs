@@ -165,3 +165,36 @@ function sync_(req) {
 function logActivity_(phone, name, type, date, details, kcal) {
   sheet_(TABS.activity).appendRow([new Date(), txt_(phone), name || '', type, date || '', details || '', kcal || '']);
 }
+
+/* ---------------- formatting + cleanup ---------------- */
+function formatTabs_(ss) {
+  const W = {
+    Clients: [120,140,135,135,90,70,50,80,100,100,100,300,90,100,90,90,110,100,85,85,85,90,95,90,70,60,120,520,75],
+    Activity: [135,120,140,140,95,440,70],
+    'Weigh-ins': [135,120,140,95,95]
+  };
+  Object.keys(W).forEach(name => {
+    const sh = ss.getSheetByName(name); if (!sh) return;
+    W[name].forEach((w, i) => sh.setColumnWidth(i + 1, w));
+    const rows = Math.max(sh.getMaxRows() - 1, 1);
+    sh.getRange(2, 1, rows, sh.getMaxColumns()).setVerticalAlignment('middle').setWrap(false).setFontSize(10);
+    sh.getRange(1, 1, 1, sh.getLastColumn()).setWrap(true).setVerticalAlignment('middle');
+    sh.setRowHeight(1, 36);
+  });
+  const ts = 'dd/mm/yyyy HH:mm';
+  ss.getSheetByName('Clients').getRange('C2:D').setNumberFormat(ts);
+  ss.getSheetByName('Activity').getRange('A2:A').setNumberFormat(ts);
+  ss.getSheetByName('Weigh-ins').getRange('A2:A').setNumberFormat(ts);
+  ss.getSheetByName('Weigh-ins').getRange('E2:E').setNumberFormat('0.0');
+}
+
+/** Run once from the editor: removes rows whose name starts with "TEST" and tidies the layout. */
+function tidy() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  [[TABS.clients, 2], [TABS.activity, 3], [TABS.weights, 3]].forEach(([name, nameCol]) => {
+    const sh = ss.getSheetByName(name); const last = sh.getLastRow(); if (last < 2) return;
+    const names = sh.getRange(2, nameCol, last - 1, 1).getValues();
+    for (let i = names.length - 1; i >= 0; i--) if (String(names[i][0]).indexOf('TEST') === 0) sh.deleteRow(i + 2);
+  });
+  formatTabs_(ss);
+}
