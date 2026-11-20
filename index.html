@@ -238,6 +238,8 @@ html[dir=ltr] .scard{direction:ltr}
 .cbadge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#111;font-weight:800;font-size:12.5px;padding:3px 12px;border-radius:999px;white-space:nowrap}
 .cs_note{text-align:center;color:var(--muted);font-size:14px;margin-top:16px}
 @media(max-width:560px){.ccards{grid-template-columns:1fr}}
+
+#consult{scroll-margin-top:84px}
 </style>
 <script>
 /* ===== CONVERSION TRACKING — paste your IDs here (leave '' to switch one off) ===== */
@@ -397,5 +399,6 @@ function saveLead(status){if(!LEADS_URL)return;
 ['n','tel','g','c'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){saveLead('started')})});
 cmHook=function(){saveLead('started')};
 </script>
+<script>if(location.hash==='#consult'){window.addEventListener('load',function(){setTimeout(function(){var c=document.getElementById('consult');if(c){c.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});c.scrollIntoView({block:'start'})}},350)})}</script>
 </body>
 </html>
