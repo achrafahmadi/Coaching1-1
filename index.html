@@ -247,6 +247,10 @@ html[dir=ltr] .scard{direction:ltr}
 @media(max-width:700px){.ccards{grid-template-columns:1fr}}
 
 .ccard{gap:0}.ccard .btn{margin-top:20px;align-self:center;min-width:60%}
+
+.ccard .cp2{margin-top:18px;font-weight:900;font-size:40px;line-height:1;color:var(--gold);text-align:center}
+.ccard .cp2 small{font-size:18px;color:var(--muted);font-weight:700}
+.ccard .cp2+.btn{margin-top:16px}
 </style>
 <script>
 /* ===== CONVERSION TRACKING — paste your IDs here (leave '' to switch one off) ===== */
@@ -308,8 +312,8 @@ function track(meta,ga,p,custom){p=p||{};
   <h2 class="reveal" data-i="cs_h"></h2>
   <p class="cs_l reveal" data-i="cs_l"></p>
   <div class="ccards">
-    <article class="ccard reveal"><img class="cimg" src="/files/consult-30min.jpg" alt="استشارة 30 دقيقة مع أشرف · 350 درهم" width="1000" height="515" loading="lazy"><a class="btn ghost" href="#" data-cwa="30" target="_blank" rel="noopener" data-i="cs_btn"></a></article>
-    <article class="ccard top reveal"><img class="cimg" src="/files/consult-1h.jpg" alt="استشارة ساعة مع أشرف · 500 درهم" width="1000" height="515" loading="lazy"><a class="btn" href="#" data-cwa="60" target="_blank" rel="noopener" data-i="cs_btn"></a></article>
+    <article class="ccard reveal"><img class="cimg" src="/files/consult-30min.jpg" alt="استشارة 30 دقيقة مع أشرف · 350 درهم" width="1000" height="515" loading="lazy"><div class="cp2">350 <small data-i="cs_dh"></small></div><a class="btn ghost" href="#" data-cwa="30" target="_blank" rel="noopener" data-i="cs_btn"></a></article>
+    <article class="ccard top reveal"><img class="cimg" src="/files/consult-1h.jpg" alt="استشارة ساعة مع أشرف · 500 درهم" width="1000" height="515" loading="lazy"><div class="cp2">500 <small data-i="cs_dh"></small></div><a class="btn" href="#" data-cwa="60" target="_blank" rel="noopener" data-i="cs_btn"></a></article>
   </div>
   <p class="cs_note" data-i="cs_note"></p>
 </div></section>
