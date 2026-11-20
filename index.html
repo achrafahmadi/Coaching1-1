@@ -481,7 +481,7 @@ function go(n){c.scrollTo({left:n*c.clientWidth,behavior:'smooth'})}
 function mark(){var n=idx();d.forEach(function(b,i){b.classList.toggle('on',i===n)})}
 c.addEventListener('scroll',function(){window.requestAnimationFrame(mark)},{passive:true});
 d.forEach(function(b,i){b.addEventListener('click',function(){stop();go(i)})});
-var t=setInterval(function(){go((idx()+1)%d.length)},6500);function stop(){clearInterval(t)}
+var t=setInterval(function(){go((idx()+1)%d.length)},4000);function stop(){clearInterval(t)}
 ['touchstart','pointerdown','wheel'].forEach(function(e){c.addEventListener(e,stop,{passive:true})});
 })();</script>
 </body>
