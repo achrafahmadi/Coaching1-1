@@ -476,13 +476,17 @@ cmHook=function(){saveLead('started')};
 </script>
 <script>if(location.hash==='#consult'){window.addEventListener('load',function(){setTimeout(function(){var c=document.getElementById('consult');if(c){c.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in')});c.scrollIntoView({block:'start'})}},350)})}</script>
 <script>(function(){var c=document.getElementById('hcar'),d=document.querySelectorAll('#hdots button');if(!c)return;
-function idx(){return Math.round(Math.abs(c.scrollLeft)/c.clientWidth)}
-function go(n){c.scrollTo({left:n*c.clientWidth,behavior:'smooth'})}
-function mark(){var n=idx();d.forEach(function(b,i){b.classList.toggle('on',i===n)})}
-c.addEventListener('scroll',function(){window.requestAnimationFrame(mark)},{passive:true});
-d.forEach(function(b,i){b.addEventListener('click',function(){stop();go(i)})});
-var t=setInterval(function(){go((idx()+1)%d.length)},4000);function stop(){clearInterval(t)}
+var N=d.length,first=c.querySelector('.hero'),cl=first.cloneNode(true);cl.setAttribute('aria-hidden','true');cl.classList.add('hclone');
+cl.querySelectorAll('a,button').forEach(function(a){a.setAttribute('tabindex','-1')});c.appendChild(cl);
+function W(){return c.clientWidth}
+function idx(){return Math.round(Math.abs(c.scrollLeft)/W())}
+function set(n,smooth){c.style.scrollBehavior=smooth?'smooth':'auto';c.scrollLeft=n*W()*(getComputedStyle(c).direction==='rtl'?-1:1);if(!smooth)c.offsetHeight;c.style.scrollBehavior=''}
+function mark(){var n=idx()%N;d.forEach(function(b,i){b.classList.toggle('on',i===n)})}
+var to;c.addEventListener('scroll',function(){window.requestAnimationFrame(mark);clearTimeout(to);to=setTimeout(function(){if(idx()>=N)set(0,false)},140)},{passive:true});
+d.forEach(function(b,i){b.addEventListener('click',function(){stop();set(i,true)})});
+var t,rs;function tick(){var n=idx();if(n>=N){set(0,false);n=0}set(n+1,true)}function play(){clearInterval(t);t=setInterval(tick,4000)}function stop(){clearInterval(t);clearTimeout(rs);rs=setTimeout(play,6000)}play();
 ['touchstart','pointerdown','wheel'].forEach(function(e){c.addEventListener(e,stop,{passive:true})});
+window.addEventListener('resize',function(){set(idx()%N,false)});
 })();</script>
 </body>
 </html>
