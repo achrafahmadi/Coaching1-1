@@ -456,7 +456,7 @@ function apply(l){lang=l;var D=T[l];
  document.querySelectorAll('[data-ip]').forEach(function(e){e.placeholder=D[e.getAttribute('data-ip')]});
  document.querySelectorAll('[data-wa]').forEach(function(a){a.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(waMsg())});
  document.querySelectorAll('[data-cwa]').forEach(function(a){a.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(D['cw_'+a.dataset.cwa])});
- document.querySelectorAll('.hero img.ph').forEach(function(i){i.alt=D.brand});
+ document.querySelectorAll('.hero img.ph').forEach(function(i){i.alt=D.brand});document.querySelectorAll('a[href*="skool.com/testosterone-strategy"]').forEach(function(x){x.href=l==='ar'?'https://www.skool.com/testosterone-strategy-6585/about':'https://www.skool.com/testosterone-strategy-8286/about'});
  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.l===l))});
  renderStories();try{localStorage.setItem('lang',l)}catch(e){}}
 document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.l)})});

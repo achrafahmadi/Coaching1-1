@@ -330,6 +330,7 @@ function setLang(l){if(!orig)orig=nodes();var i=IX[l];
  var d=document.documentElement;d.lang=l=='ar'?'ar-MA':l;d.dir=l=='ar'?'rtl':'ltr';
  document.querySelectorAll('[data-wa]').forEach(function(a){a.href='https://wa.me/212764747363?text='+encodeURIComponent(WA[a.dataset.wa][{ar:0,en:1,fr:2}[l]])});
  document.querySelectorAll('nav .lg').forEach(function(b){b.classList.toggle('on',b.dataset.l==l)});
+ document.querySelectorAll('a[href*=testosterone-strategy]').forEach(function(x){x.href=l=='ar'?'https://www.skool.com/testosterone-strategy-6585/about':'https://www.skool.com/testosterone-strategy-8286/about'});
  try{localStorage.setItem('lang',l)}catch(e){}}
 document.querySelectorAll('nav .lg').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
 var ql=new URLSearchParams(location.search).get('lang'),sl=null;try{sl=localStorage.getItem('lang')}catch(e){}
