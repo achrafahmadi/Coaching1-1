@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar-MA" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="ar-MA" dir="rtl"><head><!--lp--><link rel="canonical" href="https://achrafahmadi.com/"><link rel="alternate" hreflang="ar" href="https://achrafahmadi.com/"><link rel="alternate" hreflang="en" href="https://achrafahmadi.com/en/"><link rel="alternate" hreflang="fr" href="https://achrafahmadi.com/fr/"><link rel="alternate" hreflang="x-default" href="https://achrafahmadi.com/"><script>window.FORCE_LANG=null;var LANG_URLS={"ar": "/", "en": "/en/", "fr": "/fr/"};</script><!--/lp--><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>أشرف الأحمدي · Achraf Ahmadi Coaching</title>
 <meta name="description" content="اختار الطريق ديالك: برنامج فيديوهات الكورس على Skool، ولا Moutaba3a ma3a Achraf 1-1 (من 1500 درهم).">
 <meta property="og:title" content="Achraf Ahmadi Coaching">
@@ -332,9 +332,9 @@ function setLang(l){if(!orig)orig=nodes();var i=IX[l];
  document.querySelectorAll('nav .lg').forEach(function(b){b.classList.toggle('on',b.dataset.l==l)});
  document.querySelectorAll('a[href*=testosterone-strategy]').forEach(function(x){x.href=l=='ar'?'https://www.skool.com/testosterone-strategy-6585/about':'https://www.skool.com/testosterone-strategy-8286/about'});
  try{localStorage.setItem('lang',l)}catch(e){}}
-document.querySelectorAll('nav .lg').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
+document.querySelectorAll('nav .lg').forEach(function(b){b.addEventListener('click',function(){var u=window.LANG_URLS;if(u&&u[b.dataset.l]){try{localStorage.setItem('lang',b.dataset.l)}catch(e){}location.href=u[b.dataset.l]+location.search+location.hash}else setLang(b.dataset.l)})});
 var ql=new URLSearchParams(location.search).get('lang'),sl=null;try{sl=localStorage.getItem('lang')}catch(e){}
-var L=ql||sl;if(L&&L!='ar'&&IX[L]!=null)setLang(L);
+var FL=window.FORCE_LANG;if(!FL&&ql&&ql!='ar'&&IX[ql]!=null&&window.LANG_URLS){var q2=new URLSearchParams(location.search);q2.delete('lang');var qs=q2.toString();location.replace(window.LANG_URLS[ql]+(qs?'?'+qs:'')+location.hash)}else if(FL)setLang(FL);
 
 
 document.querySelectorAll('.vd[data-v]').forEach(function(d){d.style.cursor='pointer';d.addEventListener('click',function(){if(d.querySelector('video'))return;var im=d.querySelector('img'),v=document.createElement('video');v.src=d.dataset.v;v.poster=im.src;v.controls=true;v.playsInline=true;v.setAttribute('playsinline','');v.style.cssText='width:100%;height:100%;object-fit:cover;background:#000';d.innerHTML='';d.appendChild(v);v.play().catch(function(){});document.querySelectorAll('.vd video').forEach(function(o){if(o!==v)o.pause()})})});
